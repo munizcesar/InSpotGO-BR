@@ -67,15 +67,17 @@ const latestPosts = allPosts
         <h2 class="section-title">Em Destaque</h2>
         <div class="posts-grid">
           {featuredPosts.map(post => (
-            <a href={`/posts/${post.slug}`} class="post-card">
-              {post.data.cover && <img src={post.data.cover} alt={post.data.title} loading="lazy" class="post-card-img" />}
-              <div class="post-card-body">
-                {post.data.category && <span class="post-card-cat">{post.data.category}</span>}
-                <h3 class="post-card-title">{post.data.title}</h3>
-                <p class="post-card-desc">{post.data.description}</p>
-                {post.data.readTime && <span class="post-card-read">{post.data.readTime} de leitura</span>}
-              </div>
-            </a>
+            <div class="post-card-wrapper">
+              {post.data.category && <a href={`/${post.data.category.toLowerCase()}`} class="post-card-cat">{post.data.category}</a>}
+              <a href={`/posts/${post.slug}`} class="post-card">
+                {post.data.cover && <img src={post.data.cover} alt={post.data.title} loading="lazy" class="post-card-img" />}
+                <div class="post-card-body">
+                  <h3 class="post-card-title">{post.data.title}</h3>
+                  <p class="post-card-desc">{post.data.description}</p>
+                  {post.data.readTime && <span class="post-card-read">{post.data.readTime} de leitura</span>}
+                </div>
+              </a>
+            </div>
           ))}
         </div>
       </div>
@@ -88,15 +90,17 @@ const latestPosts = allPosts
       <h2 class="section-title">Últimos Reviews</h2>
       <div class="posts-grid">
         {latestPosts.map(post => (
-          <a href={`/posts/${post.slug}`} class="post-card">
-            {post.data.cover && <img src={post.data.cover} alt={post.data.title} loading="lazy" class="post-card-img" />}
-            <div class="post-card-body">
-              {post.data.category && <span class="post-card-cat">{post.data.category}</span>}
-              <h3 class="post-card-title">{post.data.title}</h3>
-              <p class="post-card-desc">{post.data.description}</p>
-              {post.data.readTime && <span class="post-card-read">{post.data.readTime} de leitura</span>}
-            </div>
-          </a>
+          <div class="post-card-wrapper">
+            {post.data.category && <a href={`/${post.data.category.toLowerCase()}`} class="post-card-cat">{post.data.category}</a>}
+            <a href={`/posts/${post.slug}`} class="post-card">
+              {post.data.cover && <img src={post.data.cover} alt={post.data.title} loading="lazy" class="post-card-img" />}
+              <div class="post-card-body">
+                <h3 class="post-card-title">{post.data.title}</h3>
+                <p class="post-card-desc">{post.data.description}</p>
+                {post.data.readTime && <span class="post-card-read">{post.data.readTime} de leitura</span>}
+              </div>
+            </a>
+          </div>
         ))}
       </div>
     </div>
@@ -125,11 +129,13 @@ const latestPosts = allPosts
   .category-card p { font-size: 0.875rem; color: var(--color-text-light); line-height: 1.5; }
   .posts-section { padding: 2rem 0 3rem; }
   .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+  .post-card-wrapper { position: relative; }
   .post-card { background: #fff; border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: box-shadow 0.2s, transform 0.2s; display: flex; flex-direction: column; }
   .post-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.1); transform: translateY(-2px); }
   .post-card-img { width: 100%; height: 180px; object-fit: cover; }
   .post-card-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
-  .post-card-cat { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-primary); }
+  .post-card-cat { position: absolute; top: 1rem; left: 1rem; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #fff; background: var(--color-primary); padding: 0.25rem 0.75rem; border-radius: 100px; text-decoration: none; transition: background 0.2s ease; z-index: 10; }
+  .post-card-cat:hover { background: var(--color-primary-dark, #5a67d8); }
   .post-card-title { font-size: 1rem; font-weight: 700; line-height: 1.35; }
   .post-card-desc { font-size: 0.875rem; color: var(--color-text-light); line-height: 1.5; flex: 1; }
   .post-card-read { font-size: 0.78rem; color: var(--color-text-lighter); }

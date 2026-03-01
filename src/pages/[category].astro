@@ -1,0 +1,248 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+// Configuração de categorias com ícones
+const categoryConfig = {
+  'SaaS': {
+    icon: '☁️',
+    title: 'Reviews de SaaS',
+    description: 'Plataformas de gestão, CRM, marketing, produtividade e ferramentas baseadas em nuvem para o mercado brasileiro.',
+  },
+  'Software': {
+    icon: '⚙️',
+    title: 'Reviews de Software',
+    description: 'Segurança, design, produtividade e ferramentas de desktop para profissionais e empresas brasileiras.',
+  },
+  'Comparativos': {
+    icon: '⚖️',
+    title: 'Comparativos',
+    description: 'Análises lado a lado de ferramentas similares com recomendações claras.',
+  },
+  'Guias': {
+    icon: '📚',
+    title: 'Guias de Compra',
+    description: 'Guias estruturados para ajudá-lo a escolher a ferramenta certa para seu contexto.',
+  },
+};
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => !data.draft);
+  const categories = [...new Set(posts.map(post => post.data.category))];
+  
+  return categories.map(category => ({
+    params: { category: category.toLowerCase() },
+    props: { category },
+  }));
+}
+
+const { category } = Astro.props;
+const capitalizedCategory = category.charAt(0).toUpperCase() + category.slice(1);
+const config = categoryConfig[capitalizedCategory] || {
+  icon: '📄',
+  title: capitalizedCategory,
+  description: `Descubra os melhores ${capitalizedCategory.toLowerCase()} para o seu negócio.`,
+};
+
+const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+const categoryPosts = allPosts
+  .filter(post => post.data.category.toLowerCase() === category.toLowerCase())
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+---
+
+<BaseLayout
+  title={config.title}
+  description={config.description}
+>
+  <!-- Cabeçalho da Categoria -->
+  <section class="category-hero">
+    <div class="container">
+      <div class="category-hero-content">
+        <span class="category-icon">{config.icon}</span>
+        <h1 class="category-title">{config.title}</h1>
+        <p class="category-description">{config.description}</p>
+        <p class="category-count">{categoryPosts.length} {categoryPosts.length === 1 ? 'review' : 'reviews'}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Posts -->
+  {categoryPosts.length > 0 ? (
+    <section class="posts-section">
+      <div class="container">
+        <div class="posts-grid">
+          {categoryPosts.map(post => (
+            <div class="post-card-wrapper">
+              {post.data.category && <a href={`/${post.data.category.toLowerCase()}`} class="post-card-cat">{post.data.category}</a>}
+              <a href={`/posts/${post.slug}`} class="post-card">
+                {post.data.cover && <img src={post.data.cover} alt={post.data.title} loading="lazy" class="post-card-img" />}
+                <div class="post-card-body">
+                  <h3 class="post-card-title">{post.data.title}</h3>
+                  <p class="post-card-desc">{post.data.description}</p>
+                  <div class="post-card-meta">
+                    {post.data.readTime && <span class="post-card-read">{post.data.readTime} de leitura</span>}
+                    <span class="post-card-date">
+                      {new Date(post.data.date).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    </span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  ) : (
+    <section class="posts-section">
+      <div class="container">
+        <p class="no-posts">Nenhum review encontrado nesta categoria.</p>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .category-hero {
+    background: linear-gradient(135deg, var(--color-primary, #6366f1) 0%, var(--color-secondary, #8b5cf6) 100%);
+    color: white;
+    padding: 4rem 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .category-hero-content {
+    text-align: center;
+  }
+
+  .category-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .category-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .category-description {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    opacity: 0.95;
+  }
+
+  .category-count {
+    font-size: 0.95rem;
+    opacity: 0.8;
+  }
+
+  .posts-section {
+    padding: 2rem 0 3rem;
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .post-card-wrapper {
+    position: relative;
+  }
+
+  .post-card {
+    background: #fff;
+    border: 1px solid var(--color-border, #e5e7eb);
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .post-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .post-card-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .post-card-body {
+    padding: 1.25rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .post-card-cat {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #fff;
+    background: var(--color-primary, #6366f1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+    z-index: 10;
+  }
+
+  .post-card-cat:hover {
+    background: var(--color-primary-dark, #5a67d8);
+  }
+
+  .post-card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .post-card-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-light, #666);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .post-card-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.78rem;
+    color: var(--color-text-lighter, #999);
+  }
+
+  .no-posts {
+    text-align: center;
+    color: var(--color-text-secondary, #666);
+    padding: 3rem 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .category-hero {
+      padding: 2.5rem 1rem;
+    }
+
+    .category-title {
+      font-size: 1.8rem;
+    }
+
+    .category-description {
+      font-size: 1rem;
+    }
+
+    .posts-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
