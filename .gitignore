@@ -1,0 +1,12 @@
+dist/
+.output/
+.vercel/
+.netlify/
+node_modules/
+.astro/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db
