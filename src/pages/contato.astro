@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Contato — InSpotGO BR"
+  description="Entre em contato com a equipe do InSpotGO BR. Sugestões, parcerias ou dúvidas sobre nossos reviews."
+>
+  <section class="page-content">
+    <div class="container">
+      <div class="page-inner">
+        <h1>Contato</h1>
+        <p>Quer sugerir uma ferramenta para review, reportar um erro ou discutir uma parceria? Entre em contato.</p>
+        <ul class="contact-list">
+          <li>📧 <strong>E-mail:</strong> <a href="mailto:contato@inspotgo.com.br">contato@inspotgo.com.br</a></li>
+        </ul>
+        <p class="contact-note">Respondemos em até 2 dias úteis.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+<style>
+  .page-content { padding: 3rem 0 5rem; }
+  .page-inner { max-width: 600px; margin: 0 auto; }
+  .page-inner h1 { font-size: 2rem; font-weight: 800; margin-bottom: 1.25rem; }
+  .page-inner p { color: var(--color-text-light); line-height: 1.75; margin-bottom: 1.25rem; }
+  .contact-list { list-style: none; padding: 0; margin-bottom: 1.25rem; }
+  .contact-list li { font-size: 1rem; margin-bottom: 0.5rem; }
+  .contact-list a { color: var(--color-primary); }
+  .contact-note { font-size: 0.875rem; color: var(--color-text-lighter); }
+</style>

@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { SITE_CONFIG } from '../config';
+
+const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+const featuredPosts = allPosts
+  .filter(p => p.data.featured)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 6);
+const latestPosts = allPosts
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 9);
+---
+<BaseLayout>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-badge">🇧🇷 Versão Brasileira</span>
+        <h1 class="hero-title">
+          Encontre o Melhor SaaS e Software
+          <span class="hero-highlight"> para o Mercado Brasileiro</span>
+        </h1>
+        <p class="hero-description">Reviews honestos, comparativos e guias de compra de ferramentas digitais — escritos em português, pensados para o contexto brasileiro.</p>
+        <div class="hero-actions">
+          <a href="/saas" class="btn btn-primary">Ver Reviews de SaaS</a>
+          <a href="/guias" class="btn btn-secondary">Guias de Compra</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categorias -->
+  <section class="categories-section">
+    <div class="container">
+      <h2 class="section-title">Navegue por Categoria</h2>
+      <div class="categories-grid">
+        <a href="/saas" class="category-card">
+          <span class="cat-icon">☁️</span>
+          <h3>SaaS</h3>
+          <p>Plataformas de gestão, CRM, marketing e produtividade</p>
+        </a>
+        <a href="/software" class="category-card">
+          <span class="cat-icon">⚙️</span>
+          <h3>Software</h3>
+          <p>Segurança, design, produtividade e ferramentas profissionais</p>
+        </a>
+        <a href="/comparativos" class="category-card">
+          <span class="cat-icon">⚖️</span>
+          <h3>Comparativos</h3>
+          <p>Análises lado a lado com recomendações claras</p>
+        </a>
+        <a href="/guias" class="category-card">
+          <span class="cat-icon">📚</span>
+          <h3>Guias de Compra</h3>
+          <p>Guias estruturados para escolher a ferramenta certa</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Posts em Destaque -->
+  {featuredPosts.length > 0 && (
+    <section class="posts-section">
+      <div class="container">
+        <h2 class="section-title">Em Destaque</h2>
+        <div class="posts-grid">
+          {featuredPosts.map(post => (
+            <a href={`/posts/${post.slug}`} class="post-card">
+              {post.data.cover && <img src={post.data.cover} alt={post.data.title} loading="lazy" class="post-card-img" />}
+              <div class="post-card-body">
+                {post.data.category && <span class="post-card-cat">{post.data.category}</span>}
+                <h3 class="post-card-title">{post.data.title}</h3>
+                <p class="post-card-desc">{post.data.description}</p>
+                {post.data.readTime && <span class="post-card-read">{post.data.readTime} de leitura</span>}
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Últimos Posts -->
+  <section class="posts-section posts-latest">
+    <div class="container">
+      <h2 class="section-title">Últimos Reviews</h2>
+      <div class="posts-grid">
+        {latestPosts.map(post => (
+          <a href={`/posts/${post.slug}`} class="post-card">
+            {post.data.cover && <img src={post.data.cover} alt={post.data.title} loading="lazy" class="post-card-img" />}
+            <div class="post-card-body">
+              {post.data.category && <span class="post-card-cat">{post.data.category}</span>}
+              <h3 class="post-card-title">{post.data.title}</h3>
+              <p class="post-card-desc">{post.data.description}</p>
+              {post.data.readTime && <span class="post-card-read">{post.data.readTime} de leitura</span>}
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero { background: var(--gradient-hero, linear-gradient(135deg,#1e1150,#2e1155)); color: #fff; padding: 5rem 0 4rem; }
+  .hero-content { max-width: 700px; }
+  .hero-badge { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); border-radius: 100px; padding: 0.3rem 1rem; font-size: 0.8rem; font-weight: 600; margin-bottom: 1.5rem; }
+  .hero-title { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
+  .hero-highlight { background: var(--gradient-logo-go, linear-gradient(90deg,#f97316,#ec4899)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero-description { font-size: 1.1rem; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 2rem; max-width: 560px; }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn { padding: 0.75rem 1.75rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: opacity 0.2s, transform 0.2s; display: inline-flex; align-items: center; }
+  .btn:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-primary { background: var(--color-action, #f97316); color: #fff; }
+  .btn-secondary { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+  .categories-section { padding: 4rem 0 2rem; }
+  .section-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.75rem; }
+  .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .category-card { background: var(--color-bg-alt); border: 1px solid var(--color-border); border-radius: 12px; padding: 1.5rem; text-decoration: none; color: inherit; transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
+  .category-card:hover { border-color: var(--color-primary); box-shadow: 0 4px 16px rgba(37,99,235,0.1); transform: translateY(-2px); }
+  .cat-icon { font-size: 2rem; display: block; margin-bottom: 0.75rem; }
+  .category-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .category-card p { font-size: 0.875rem; color: var(--color-text-light); line-height: 1.5; }
+  .posts-section { padding: 2rem 0 3rem; }
+  .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+  .post-card { background: #fff; border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: box-shadow 0.2s, transform 0.2s; display: flex; flex-direction: column; }
+  .post-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.1); transform: translateY(-2px); }
+  .post-card-img { width: 100%; height: 180px; object-fit: cover; }
+  .post-card-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
+  .post-card-cat { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-primary); }
+  .post-card-title { font-size: 1rem; font-weight: 700; line-height: 1.35; }
+  .post-card-desc { font-size: 0.875rem; color: var(--color-text-light); line-height: 1.5; flex: 1; }
+  .post-card-read { font-size: 0.78rem; color: var(--color-text-lighter); }
+  @media (max-width: 768px) {
+    .hero { padding: 3rem 0 2.5rem; }
+    .hero-actions { flex-direction: column; }
+    .btn { text-align: center; justify-content: center; }
+    .posts-grid { grid-template-columns: 1fr; }
+  }
+</style>

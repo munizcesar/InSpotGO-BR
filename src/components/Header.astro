@@ -1,0 +1,218 @@
+---
+import "../styles/global.css";
+const currentPath = Astro.url.pathname;
+---
+<header class="header" role="banner">
+  <div class="container container-flex">
+
+    <button
+      class="mobile-menu-toggle"
+      aria-label="Abrir menu de navegação"
+      aria-expanded="false"
+      id="mobile-menu-toggle"
+    >
+      <span class="hamburger"></span>
+      <span class="hamburger"></span>
+      <span class="hamburger"></span>
+    </button>
+
+    <a href="/" class="logo-link" aria-label="InSpotGO BR — página inicial">
+      <span class="logo-wrap">
+        <img src="/logo-icon.svg" alt="" class="logo-icon" height="40" width="40" />
+        <span class="logo-text" aria-hidden="true">
+          <span class="logo-spot">InSpot</span><span class="logo-go">GO</span>
+          <span class="logo-br">BR</span>
+        </span>
+      </span>
+    </a>
+
+    <nav aria-label="Navegação principal" class="nav desktop-nav" id="desktop-nav">
+      <a href="/saas" class={`nav-link ${currentPath.startsWith('/saas') ? 'active' : ''}`}>SaaS</a>
+      <a href="/software" class={`nav-link ${currentPath.startsWith('/software') ? 'active' : ''}`}>Software</a>
+      <a href="/comparativos" class={`nav-link ${currentPath.startsWith('/comparativos') ? 'active' : ''}`}>Comparativos</a>
+      <a href="/guias" class={`nav-link ${currentPath.startsWith('/guias') ? 'active' : ''}`}>Guias</a>
+      <a href="/sobre" class={`nav-link ${currentPath === '/sobre' ? 'active' : ''}`}>Sobre</a>
+      <a href="/contato" class={`nav-link ${currentPath === '/contato' ? 'active' : ''}`}>Contato</a>
+    </nav>
+
+    <div class="header-right">
+      <button class="search-pill" id="search-trigger" aria-label="Buscar" title="Buscar (Ctrl+K)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <span class="search-pill-text">Buscar reviews e guias...</span>
+        <kbd class="search-pill-kbd">⌘K</kbd>
+      </button>
+      <button class="search-icon-btn mobile-search-btn" id="search-trigger-mobile" aria-label="Buscar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="drawer-backdrop" id="drawer-backdrop" aria-hidden="true"></div>
+
+    <nav aria-label="Navegação mobile" class="drawer" id="main-nav">
+      <div class="drawer-header">
+        <div class="drawer-brand">
+          <img src="/logo-icon.svg" alt="" class="drawer-logo-icon" height="36" width="36" />
+          <div>
+            <div class="drawer-brand-name"><span class="logo-spot">InSpot</span><span class="logo-go">GO</span> <span class="logo-br-drawer">BR</span></div>
+            <div class="drawer-brand-tagline">Encontre o Melhor. Decida com Confiança.</div>
+          </div>
+        </div>
+        <button class="drawer-close" id="drawer-close" aria-label="Fechar menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="drawer-links">
+        <a href="/saas" class={`drawer-link ${currentPath.startsWith('/saas') ? 'active' : ''}`}>
+          <span class="drawer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></span>
+          <span class="drawer-label">SaaS</span>
+          <svg class="drawer-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+        <a href="/software" class={`drawer-link ${currentPath.startsWith('/software') ? 'active' : ''}`}>
+          <span class="drawer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+          <span class="drawer-label">Software</span>
+          <svg class="drawer-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+        <a href="/comparativos" class={`drawer-link ${currentPath.startsWith('/comparativos') ? 'active' : ''}`}>
+          <span class="drawer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+          <span class="drawer-label">Comparativos</span>
+          <svg class="drawer-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+        <a href="/guias" class={`drawer-link ${currentPath.startsWith('/guias') ? 'active' : ''}`}>
+          <span class="drawer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+          <span class="drawer-label">Guias</span>
+          <svg class="drawer-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+        <a href="/sobre" class={`drawer-link ${currentPath === '/sobre' ? 'active' : ''}`}>
+          <span class="drawer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></span>
+          <span class="drawer-label">Sobre</span>
+          <svg class="drawer-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+        <a href="/contato" class={`drawer-link ${currentPath === '/contato' ? 'active' : ''}`}>
+          <span class="drawer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+          <span class="drawer-label">Contato</span>
+          <svg class="drawer-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+
+      <div class="drawer-footer">
+        <p class="drawer-newsletter-title">Fique por dentro</p>
+        <p class="drawer-newsletter-sub">Reviews exclusivos direto no seu e-mail</p>
+        <a href="/#newsletter" class="drawer-newsletter-btn">Assinar Grátis</a>
+      </div>
+    </nav>
+
+  </div>
+</header>
+
+<style>
+  .header { background: rgba(255,255,255,0.97); border-bottom: 1px solid var(--color-border); position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); }
+  .container-flex { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.5rem; max-width: 1400px; margin: 0 auto; gap: 1rem; }
+  .logo-link { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; transition: transform 0.25s; }
+  .logo-link:hover { transform: scale(1.04); }
+  .logo-wrap { display: inline-flex; align-items: center; gap: 0.5rem; }
+  .logo-icon { display: block; height: 38px; width: 38px; }
+  .logo-text { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; line-height: 1; user-select: none; white-space: nowrap; display: flex; align-items: baseline; gap: 0.15rem; }
+  .logo-spot { color: var(--color-primary); }
+  .logo-go { background: var(--gradient-logo-go, linear-gradient(90deg,#f97316,#ec4899)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .logo-br { font-size: 0.7rem; font-weight: 700; color: #fff; background: #10b981; border-radius: 4px; padding: 0.05rem 0.3rem; letter-spacing: 0.03em; -webkit-text-fill-color: #fff; }
+  .mobile-menu-toggle { display: none; flex-direction: column; justify-content: space-around; width: 2rem; height: 2rem; background: transparent; border: none; cursor: pointer; padding: 0; flex-shrink: 0; }
+  .hamburger { width: 1.75rem; height: 2px; background: var(--color-text); border-radius: 4px; transition: all 0.28s ease; transform-origin: center; display: block; }
+  .mobile-menu-toggle.active .hamburger:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .mobile-menu-toggle.active .hamburger:nth-child(2) { opacity: 0; }
+  .mobile-menu-toggle.active .hamburger:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  .desktop-nav { display: flex; align-items: center; gap: 1.75rem; flex: 1; justify-content: center; }
+  .nav-link { color: var(--color-text); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.2s; position: relative; white-space: nowrap; }
+  .nav-link::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 2px; background: var(--color-primary); transition: width 0.25s; }
+  .nav-link:hover { color: var(--color-primary); }
+  .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+  .nav-link.active { color: var(--color-primary); font-weight: 600; }
+  .header-right { display: flex; align-items: center; flex-shrink: 0; }
+  .search-pill { display: flex; align-items: center; gap: 0.5rem; background: #f9fafb; border: 1.5px solid #e5e7eb; border-radius: 100px; padding: 0.45rem 0.875rem 0.45rem 0.75rem; cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s, background 0.2s; white-space: nowrap; }
+  .search-pill:hover { border-color: var(--color-primary); background: #fff; box-shadow: 0 0 0 3px rgba(37,99,235,0.08); }
+  .search-pill svg { color: #9ca3af; flex-shrink: 0; }
+  .search-pill-text { font-size: 0.82rem; color: #9ca3af; flex: 1; text-align: left; min-width: 160px; }
+  .search-pill-kbd { font-size: 0.65rem; color: #9ca3af; background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 5px; padding: 0.1rem 0.35rem; font-family: inherit; flex-shrink: 0; }
+  .mobile-search-btn { display: none; }
+  .drawer-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 999; opacity: 0; transition: opacity 0.3s; }
+  .drawer-backdrop.active { display: block; opacity: 1; }
+  .drawer { display: none; }
+  @media (max-width: 768px) {
+    .container-flex { padding: 0.75rem 1rem; gap: 0; }
+    .mobile-menu-toggle { display: flex; order: 1; flex-shrink: 0; }
+    .logo-link { order: 2; position: absolute; left: 50%; transform: translateX(-50%); }
+    .logo-link:hover { transform: translateX(-50%) scale(1.04); }
+    .header-right { order: 3; margin-left: auto; }
+    .search-pill { display: none; }
+    .mobile-search-btn { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; background: transparent; border: none; color: var(--color-text); cursor: pointer; border-radius: 8px; transition: color 0.2s, background 0.2s; }
+    .mobile-search-btn:hover { color: var(--color-primary); background: rgba(37,99,235,0.06); }
+    .desktop-nav { display: none; }
+    .drawer { display: flex; flex-direction: column; position: fixed; top: 0; left: 0; height: 100dvh; width: 82%; max-width: 300px; background: #fff; transform: translate3d(-100%, 0, 0); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); box-shadow: 4px 0 32px rgba(0,0,0,0.14); z-index: 1002; overflow-y: auto; }
+    .drawer.active { transform: translate3d(0, 0, 0); }
+    .drawer-header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1rem 1rem 1.25rem; background: var(--gradient-hero, linear-gradient(135deg, #1e1150, #2e1155)); flex-shrink: 0; }
+    .drawer-brand { display: flex; align-items: center; gap: 0.75rem; }
+    .drawer-logo-icon { border-radius: 8px; }
+    .drawer-brand-name { font-size: 1.05rem; font-weight: 800; line-height: 1; margin-bottom: 0.15rem; color: #fff; }
+    .logo-br-drawer { font-size: 0.65rem; font-weight: 700; color: #fff; background: #10b981; border-radius: 4px; padding: 0.05rem 0.25rem; margin-left: 0.2rem; }
+    .drawer-brand-tagline { font-size: 0.65rem; color: rgba(255,255,255,0.58); font-style: italic; }
+    .drawer-close { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; color: rgba(255,255,255,0.9); cursor: pointer; flex-shrink: 0; transition: background 0.2s; }
+    .drawer-close:hover { background: rgba(255,255,255,0.22); }
+    .drawer-links { display: flex; flex-direction: column; flex: 1; }
+    .drawer-link { display: flex; align-items: center; padding: 0.9rem 1.25rem; font-size: 0.95rem; font-weight: 500; color: #374151; border-bottom: 1px solid #f3f4f6; text-decoration: none; transition: background 0.12s, color 0.12s; }
+    .drawer-link:last-child { border-bottom: none; }
+    .drawer-link:hover { background: #f9fafb; color: var(--color-primary); }
+    .drawer-link.active { background: #fff7ed; color: var(--color-primary); border-left: 3px solid var(--color-primary); font-weight: 600; }
+    .drawer-icon { display: flex; align-items: center; justify-content: center; width: 20px; height: 20px; flex-shrink: 0; margin-right: 0.875rem; color: #9ca3af; }
+    .drawer-icon svg { width: 18px; height: 18px; }
+    .drawer-link:hover .drawer-icon, .drawer-link.active .drawer-icon { color: var(--color-primary); }
+    .drawer-label { flex: 1; }
+    .drawer-arrow { display: block; width: 14px; height: 14px; color: #d1d5db; flex-shrink: 0; }
+    .drawer-footer { padding: 1.25rem; border-top: 1px solid #f3f4f6; background: #fafafa; flex-shrink: 0; }
+    .drawer-newsletter-title { font-size: 0.875rem; font-weight: 700; color: #111827; margin: 0 0 0.2rem; }
+    .drawer-newsletter-sub { font-size: 0.75rem; color: #9ca3af; margin: 0 0 0.875rem; }
+    .drawer-newsletter-btn { display: block; text-align: center; background: var(--gradient-action, linear-gradient(135deg,#f97316,#ec4899)); color: #fff; font-weight: 600; font-size: 0.85rem; padding: 0.65rem 1rem; border-radius: 8px; text-decoration: none; transition: opacity 0.2s; }
+    .drawer-newsletter-btn:hover { opacity: 0.88; }
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const drawer = document.getElementById('main-nav');
+    const backdrop = document.getElementById('drawer-backdrop');
+    const closeBtn = document.getElementById('drawer-close');
+    const mobileSearch = document.getElementById('search-trigger-mobile');
+    if (mobileSearch) {
+      mobileSearch.addEventListener('click', function() {
+        const dt = document.getElementById('search-trigger');
+        if (dt) dt.click(); else document.dispatchEvent(new CustomEvent('open-search'));
+      });
+    }
+    function openDrawer() {
+      menuToggle?.classList.add('active'); drawer?.classList.add('active'); backdrop?.classList.add('active');
+      menuToggle?.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden'; document.body.style.position = 'fixed'; document.body.style.width = '100%';
+    }
+    function closeDrawer() {
+      menuToggle?.classList.remove('active'); drawer?.classList.remove('active'); backdrop?.classList.remove('active');
+      menuToggle?.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = ''; document.body.style.position = ''; document.body.style.width = '';
+    }
+    menuToggle?.addEventListener('click', function(e) { e.stopPropagation(); drawer?.classList.contains('active') ? closeDrawer() : openDrawer(); });
+    backdrop?.addEventListener('click', closeDrawer);
+    closeBtn?.addEventListener('click', closeDrawer);
+    drawer?.querySelectorAll('.drawer-link').forEach(function(link) { link.addEventListener('click', closeDrawer); });
+    drawer?.querySelector('.drawer-newsletter-btn')?.addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && drawer?.classList.contains('active')) { closeDrawer(); menuToggle?.focus(); } });
+    window.addEventListener('resize', function() { if (window.innerWidth > 768) closeDrawer(); });
+    let touchStartX = 0;
+    drawer?.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+    drawer?.addEventListener('touchend', function(e) { if (touchStartX - e.changedTouches[0].clientX > 60) closeDrawer(); }, { passive: true });
+  });
+</script>
