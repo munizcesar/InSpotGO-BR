@@ -1,5 +1,5 @@
 ---
-title: "Notion Vale a Pena em 2026? Review Completo para o Mercado Brasileiro"
+title: "Notion: Review Completo para o Mercado Brasileiro"
 description: "Review honesto do Notion — o que ele faz muito bem, onde frustra, e se é a ferramenta certa para o fluxo de trabalho do seu time."
 category: "SaaS"
 tags: ["produtividade", "saas", "anotações", "gestão de projetos", "notion"]

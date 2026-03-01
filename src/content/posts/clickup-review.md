@@ -1,5 +1,5 @@
 ---
-title: "ClickUp Review 2026: O Gerenciador de Projetos Mais Completo Vale a Pena?"
+title: "ClickUp: O Gerenciador de Projetos Mais Completo Vale a Pena?"
 description: "O ClickUp promete substituir todas as outras ferramentas. Um mergulho profundo em se a profundidade de funcionalidades justifica a curva de aprendizado."
 category: "SaaS"
 tags: ["gestão de projetos", "saas", "produtividade", "clickup", "ferramentas de time"]

@@ -1,5 +1,5 @@
 ---
-title: "Melhor CRM para Pequenas Empresas Brasileiras em 2026"
+title: "Melhor CRM para Pequenas Empresas Brasileiras"
 description: "Comparamos os principais CRMs disponíveis no Brasil para pequenas e médias empresas: HubSpot, Pipedrive, RD Station e Ploomes. Qual vale a pena?"
 category: "SaaS"
 tags: ["crm", "saas", "pequenas empresas", "vendas", "brasil"]

@@ -1,5 +1,5 @@
 ---
-title: "Canva Pro Vale a Pena para Times Brasileiros em 2026?"
+title: "Canva Pro Vale a Pena para Times Brasileiros?"
 description: "O Canva Pro adiciona kits de marca, armazenamento ilimitado, remoção de fundo e recursos de time. Avaliamos se o upgrade justifica o custo para profissionais."
 category: "Software"
 tags: ["design", "software", "canva", "ferramentas criativas", "produtividade"]

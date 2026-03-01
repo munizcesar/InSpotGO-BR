@@ -1,5 +1,5 @@
 ---
-title: "HubSpot CRM: Vale a Pena para Empresas Brasileiras em 2026?"
+title: "HubSpot CRM: Vale a Pena para Empresas Brasileiras?"
 description: "Review completo do HubSpot CRM — o que é realmente gratuito, onde estão as limitações e se é a escolha certa para o seu negócio no Brasil."
 category: "SaaS"
 tags: ["crm", "saas", "vendas", "marketing", "hubspot"]
