@@ -93,27 +93,28 @@ const latestPosts = allPosts
       
       {latestPosts.length > 0 && (
         <div class="latest-layout">
-          <!-- Post Principal (Esquerda) -->
+          <!-- Post Principal Em Destaque (Esquerda) -->
           <div class="latest-main">
-            {latestPosts[0] && (
+            {featuredPosts[0] && (
               <div class="latest-main-card">
-                {latestPosts[0].data.cover && (
-                  <img src={latestPosts[0].data.cover} alt={latestPosts[0].data.title} class="latest-main-img" />
+                {featuredPosts[0].data.cover && (
+                  <img src={featuredPosts[0].data.cover} alt={featuredPosts[0].data.title} class="latest-main-img" />
                 )}
                 <div class="latest-main-badge-wrapper">
-                  {latestPosts[0].data.category && (
-                    <a href={`/${latestPosts[0].data.category.toLowerCase()}`} class="latest-badge">{latestPosts[0].data.category}</a>
+                  {featuredPosts[0].data.category && (
+                    <a href={`/${featuredPosts[0].data.category.toLowerCase()}`} class="latest-badge">{featuredPosts[0].data.category}</a>
                   )}
                 </div>
                 <div class="latest-main-content">
                   <h3 class="latest-main-title">
-                    <a href={`/posts/${latestPosts[0].slug}`}>{latestPosts[0].data.title}</a>
+                    <a href={`/posts/${featuredPosts[0].slug}`}>{featuredPosts[0].data.title}</a>
                   </h3>
+                  <p class="latest-main-desc">{featuredPosts[0].data.description}</p>
                   <div class="latest-main-meta">
-                    {latestPosts[0].data.readTime && <span>{latestPosts[0].data.readTime}</span>}
-                    {latestPosts[0].data.date && (
+                    {featuredPosts[0].data.readTime && <span>{featuredPosts[0].data.readTime}</span>}
+                    {featuredPosts[0].data.date && (
                       <span>
-                        {new Date(latestPosts[0].data.date).toLocaleDateString('pt-BR', { month: 'short', day: 'numeric' })}
+                        {new Date(featuredPosts[0].data.date).toLocaleDateString('pt-BR', { month: 'short', day: 'numeric' })}
                       </span>
                     )}
                   </div>
@@ -143,6 +144,7 @@ const latestPosts = allPosts
                 </a>
               ))}
             </div>
+            <a href="/sobre" class="view-all-btn">Ver Todos os Posts →</a>
           </aside>
         </div>
       )}
@@ -183,6 +185,7 @@ const latestPosts = allPosts
   .latest-main-content { padding: 0 1.5rem 1.5rem; }
   .latest-main-title a { color: inherit; text-decoration: none; font-size: 1.5rem; font-weight: 800; line-height: 1.25; transition: color 0.2s; }
   .latest-main-title a:hover { color: var(--color-primary); }
+  .latest-main-desc { color: var(--color-text-light); font-size: 0.95rem; line-height: 1.6; margin: 0.75rem 0; }
   .latest-main-meta { display: flex; gap: 1rem; font-size: 0.85rem; color: var(--color-text-light); margin-top: 0.75rem; }
   .trending-sidebar { display: flex; flex-direction: column; gap: 1.25rem; }
   .trending-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
@@ -194,6 +197,8 @@ const latestPosts = allPosts
   .trending-badge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #fff; background: var(--color-primary); padding: 0.2rem 0.6rem; border-radius: 100px; width: fit-content; }
   .trending-item-title { font-size: 0.9rem; font-weight: 600; line-height: 1.3; color: #1f2937; }
   .trending-date { font-size: 0.75rem; color: var(--color-text-lighter); }
+  .view-all-btn { display: block; text-align: center; background: var(--gradient-action, linear-gradient(135deg,#f97316,#ec4899)); color: #fff; font-weight: 600; font-size: 0.9rem; padding: 0.75rem 1.25rem; border-radius: 8px; text-decoration: none; transition: opacity 0.2s, transform 0.2s; margin-top: 1rem; }
+  .view-all-btn:hover { opacity: 0.88; transform: translateY(-2px); }
   .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
   .post-card-wrapper { position: relative; }
   .post-card { background: #fff; border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: box-shadow 0.2s, transform 0.2s; display: flex; flex-direction: column; }
