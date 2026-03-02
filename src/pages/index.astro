@@ -126,7 +126,7 @@ const latestPosts = allPosts
           <aside class="trending-sidebar">
             <h3 class="trending-title">📈 Trending Now</h3>
             <div class="trending-list">
-              {latestPosts.slice(1, 6).map((post, index) => (
+              {featuredPosts.slice(0, 5).map((post, index) => (
                 <a href={`/posts/${post.slug}`} class="trending-item">
                   <div class="trending-number">{index + 1}</div>
                   <div class="trending-content">
