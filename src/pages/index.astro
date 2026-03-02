@@ -86,22 +86,66 @@ const latestPosts = allPosts
   <!-- Últimos Posts -->
   <section class="posts-section posts-latest">
     <div class="container">
-      <h2 class="section-title">Últimos Reviews</h2>
-      <div class="posts-grid">
-        {latestPosts.map(post => (
-          <div class="post-card-wrapper">
-            {post.data.category && <a href={`/${post.data.category.toLowerCase()}`} class="post-card-cat">{post.data.category}</a>}
-            <a href={`/posts/${post.slug}`} class="post-card">
-              {post.data.cover && <img src={post.data.cover} alt={post.data.title} loading="lazy" class="post-card-img" />}
-              <div class="post-card-body">
-                <h3 class="post-card-title">{post.data.title}</h3>
-                <p class="post-card-desc">{post.data.description}</p>
-                {post.data.readTime && <span class="post-card-read">{post.data.readTime} de leitura</span>}
-              </div>
-            </a>
-          </div>
-        ))}
+      <div class="latest-header">
+        <h2 class="section-title">Últimos Reviews</h2>
+        <p class="latest-desc">Fique por dentro com nossos últimos artigos, reviews e guias de compra</p>
       </div>
+      
+      {latestPosts.length > 0 && (
+        <div class="latest-layout">
+          <!-- Post Principal (Esquerda) -->
+          <div class="latest-main">
+            {latestPosts[0] && (
+              <div class="latest-main-card">
+                {latestPosts[0].data.cover && (
+                  <img src={latestPosts[0].data.cover} alt={latestPosts[0].data.title} class="latest-main-img" />
+                )}
+                <div class="latest-main-badge-wrapper">
+                  {latestPosts[0].data.category && (
+                    <a href={`/${latestPosts[0].data.category.toLowerCase()}`} class="latest-badge">{latestPosts[0].data.category}</a>
+                  )}
+                </div>
+                <div class="latest-main-content">
+                  <h3 class="latest-main-title">
+                    <a href={`/posts/${latestPosts[0].slug}`}>{latestPosts[0].data.title}</a>
+                  </h3>
+                  <div class="latest-main-meta">
+                    {latestPosts[0].data.readTime && <span>{latestPosts[0].data.readTime}</span>}
+                    {latestPosts[0].data.date && (
+                      <span>
+                        {new Date(latestPosts[0].data.date).toLocaleDateString('pt-BR', { month: 'short', day: 'numeric' })}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <!-- Trending Now (Direita) -->
+          <aside class="trending-sidebar">
+            <h3 class="trending-title">📈 Trending Now</h3>
+            <div class="trending-list">
+              {latestPosts.slice(1, 6).map((post, index) => (
+                <a href={`/posts/${post.slug}`} class="trending-item">
+                  <div class="trending-number">{index + 1}</div>
+                  <div class="trending-content">
+                    {post.data.category && (
+                      <span class="trending-badge">{post.data.category}</span>
+                    )}
+                    <h4 class="trending-item-title">{post.data.title}</h4>
+                    {post.data.date && (
+                      <span class="trending-date">
+                        {new Date(post.data.date).toLocaleDateString('pt-BR', { month: 'short', day: 'numeric' })}
+                      </span>
+                    )}
+                  </div>
+                </a>
+              ))}
+            </div>
+          </aside>
+        </div>
+      )}
     </div>
   </section>
 </BaseLayout>
@@ -127,6 +171,29 @@ const latestPosts = allPosts
   .category-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; }
   .category-card p { font-size: 0.875rem; color: var(--color-text-light); line-height: 1.5; }
   .posts-section { padding: 2rem 0 3rem; }
+  .latest-header { margin-bottom: 2rem; }
+  .latest-desc { color: var(--color-text-light); font-size: 0.95rem; margin-top: 0.5rem; }
+  .latest-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: start; }
+  .latest-main-card { background: #fff; border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; transition: box-shadow 0.3s, transform 0.3s; }
+  .latest-main-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,0.12); transform: translateY(-4px); }
+  .latest-main-img { width: 100%; height: 340px; object-fit: cover; display: block; }
+  .latest-main-badge-wrapper { position: relative; margin-top: -2.5rem; margin-left: 1.5rem; margin-bottom: 1rem; z-index: 10; }
+  .latest-badge { display: inline-block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #fff; background: var(--color-primary); padding: 0.4rem 1rem; border-radius: 100px; text-decoration: none; transition: background 0.2s; }
+  .latest-badge:hover { background: var(--color-primary-dark); }
+  .latest-main-content { padding: 0 1.5rem 1.5rem; }
+  .latest-main-title a { color: inherit; text-decoration: none; font-size: 1.5rem; font-weight: 800; line-height: 1.25; transition: color 0.2s; }
+  .latest-main-title a:hover { color: var(--color-primary); }
+  .latest-main-meta { display: flex; gap: 1rem; font-size: 0.85rem; color: var(--color-text-light); margin-top: 0.75rem; }
+  .trending-sidebar { display: flex; flex-direction: column; gap: 1.25rem; }
+  .trending-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
+  .trending-list { display: flex; flex-direction: column; gap: 1rem; }
+  .trending-item { display: flex; gap: 1rem; padding: 0.875rem; background: #f9fafb; border-radius: 10px; text-decoration: none; color: inherit; transition: background 0.2s, transform 0.2s; }
+  .trending-item:hover { background: #f3f4f6; transform: translateX(4px); }
+  .trending-number { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; min-width: 32px; background: var(--color-action); color: #fff; border-radius: 50%; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+  .trending-content { display: flex; flex-direction: column; gap: 0.3rem; flex: 1; }
+  .trending-badge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #fff; background: var(--color-primary); padding: 0.2rem 0.6rem; border-radius: 100px; width: fit-content; }
+  .trending-item-title { font-size: 0.9rem; font-weight: 600; line-height: 1.3; color: #1f2937; }
+  .trending-date { font-size: 0.75rem; color: var(--color-text-lighter); }
   .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
   .post-card-wrapper { position: relative; }
   .post-card { background: #fff; border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: box-shadow 0.2s, transform 0.2s; display: flex; flex-direction: column; }
@@ -143,5 +210,8 @@ const latestPosts = allPosts
     .hero-actions { flex-direction: column; }
     .btn { text-align: center; justify-content: center; }
     .posts-grid { grid-template-columns: 1fr; }
+    .latest-layout { grid-template-columns: 1fr; }
+    .latest-main-img { height: 240px; }
+    .trending-sidebar { }
   }
 </style>
