@@ -54,6 +54,74 @@ const latestPosts = allPosts
     </section>
   )}
 
+  <!-- Últimos Posts -->
+  <section class="posts-section posts-latest">
+    <div class="container">
+      <div class="latest-header">
+        <h2 class="section-title">Últimos Reviews</h2>
+        <p class="latest-desc">Fique por dentro com nossos últimos artigos, reviews e guias de compra</p>
+      </div>
+      
+      {latestPosts.length > 0 && (
+        <div class="latest-layout">
+          <!-- Post Principal Mais Recente (Esquerda) -->
+          <div class="latest-main">
+            {latestPosts[0] && (
+              <div class="latest-main-card">
+                {latestPosts[0].data.cover && (
+                  <img src={latestPosts[0].data.cover} alt={latestPosts[0].data.title} class="latest-main-img" />
+                )}
+                <div class="latest-main-badge-wrapper">
+                  {latestPosts[0].data.category && (
+                    <a href={`/${latestPosts[0].data.category.toLowerCase()}`} class="latest-badge">{latestPosts[0].data.category}</a>
+                  )}
+                </div>
+                <div class="latest-main-content">
+                  <h3 class="latest-main-title">
+                    <a href={`/posts/${latestPosts[0].slug}`}>{latestPosts[0].data.title}</a>
+                  </h3>
+                  <p class="latest-main-desc">{latestPosts[0].data.description}</p>
+                  <div class="latest-main-meta">
+                    {latestPosts[0].data.readTime && <span>⏱ {latestPosts[0].data.readTime}</span>}
+                    {latestPosts[0].data.date && (
+                      <span>
+                        {new Date(latestPosts[0].data.date).toLocaleDateString('pt-BR', { month: 'short', day: 'numeric', year: 'numeric' })}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <!-- Em Alta (Direita) -->
+          <aside class="trending-sidebar">
+            <h3 class="trending-title">📈 Em Alta</h3>
+            <div class="trending-list">
+              {featuredPosts.slice(0, 5).map((post, index) => (
+                <a href={`/posts/${post.slug}`} class="trending-item">
+                  <div class="trending-number">{index + 1}</div>
+                  <div class="trending-content">
+                    {post.data.category && (
+                      <span class="trending-badge">{post.data.category}</span>
+                    )}
+                    <h4 class="trending-item-title">{post.data.title}</h4>
+                    {post.data.date && (
+                      <span class="trending-date">
+                        {new Date(post.data.date).toLocaleDateString('pt-BR', { month: 'short', day: 'numeric' })}
+                      </span>
+                    )}
+                  </div>
+                </a>
+              ))}
+            </div>
+            <a href="/saas" class="view-all-btn">Ver Todos os Posts →</a>
+          </aside>
+        </div>
+      )}
+    </div>
+  </section>
+
   <!-- Categorias -->
   <section class="categories-section">
     <div class="container">
@@ -80,74 +148,6 @@ const latestPosts = allPosts
           <p>Guias estruturados para escolher a ferramenta certa</p>
         </a>
       </div>
-    </div>
-  </section>
-
-  <!-- Últimos Posts -->
-  <section class="posts-section posts-latest">
-    <div class="container">
-      <div class="latest-header">
-        <h2 class="section-title">Últimos Reviews</h2>
-        <p class="latest-desc">Fique por dentro com nossos últimos artigos, reviews e guias de compra</p>
-      </div>
-      
-      {latestPosts.length > 0 && (
-        <div class="latest-layout">
-          <!-- Post Principal Em Destaque (Esquerda) -->
-          <div class="latest-main">
-            {featuredPosts[0] && (
-              <div class="latest-main-card">
-                {featuredPosts[0].data.cover && (
-                  <img src={featuredPosts[0].data.cover} alt={featuredPosts[0].data.title} class="latest-main-img" />
-                )}
-                <div class="latest-main-badge-wrapper">
-                  {featuredPosts[0].data.category && (
-                    <a href={`/${featuredPosts[0].data.category.toLowerCase()}`} class="latest-badge">{featuredPosts[0].data.category}</a>
-                  )}
-                </div>
-                <div class="latest-main-content">
-                  <h3 class="latest-main-title">
-                    <a href={`/posts/${featuredPosts[0].slug}`}>{featuredPosts[0].data.title}</a>
-                  </h3>
-                  <p class="latest-main-desc">{featuredPosts[0].data.description}</p>
-                  <div class="latest-main-meta">
-                    {featuredPosts[0].data.readTime && <span>{featuredPosts[0].data.readTime}</span>}
-                    {featuredPosts[0].data.date && (
-                      <span>
-                        {new Date(featuredPosts[0].data.date).toLocaleDateString('pt-BR', { month: 'short', day: 'numeric' })}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-
-          <!-- Trending Now (Direita) -->
-          <aside class="trending-sidebar">
-            <h3 class="trending-title">📈 Trending Now</h3>
-            <div class="trending-list">
-              {featuredPosts.slice(0, 5).map((post, index) => (
-                <a href={`/posts/${post.slug}`} class="trending-item">
-                  <div class="trending-number">{index + 1}</div>
-                  <div class="trending-content">
-                    {post.data.category && (
-                      <span class="trending-badge">{post.data.category}</span>
-                    )}
-                    <h4 class="trending-item-title">{post.data.title}</h4>
-                    {post.data.date && (
-                      <span class="trending-date">
-                        {new Date(post.data.date).toLocaleDateString('pt-BR', { month: 'short', day: 'numeric' })}
-                      </span>
-                    )}
-                  </div>
-                </a>
-              ))}
-            </div>
-            <a href="/sobre" class="view-all-btn">Ver Todos os Posts →</a>
-          </aside>
-        </div>
-      )}
     </div>
   </section>
 </BaseLayout>
