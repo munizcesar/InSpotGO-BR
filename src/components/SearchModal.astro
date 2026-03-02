@@ -1,119 +1,220 @@
 ---
-// Modal de busca — ativado pelo botão de search no header
+// Modal de busca
 ---
 <div id="search-overlay" class="search-overlay" role="dialog" aria-modal="true" aria-label="Buscar no site" style="display:none">
   <div class="search-modal">
+
     <div class="search-header">
-      <div class="search-input-wrap">
-        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input id="search-input" type="search" placeholder="Buscar reviews, comparativos e guias..." autocomplete="off" spellcheck="false" />
-        <button class="search-close-btn" id="search-close-btn" aria-label="Fechar busca">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" class="search-header-icon"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="search-input" type="search" placeholder="Buscar reviews, comparativos, guias..." autocomplete="off" spellcheck="false" />
+      <button class="search-close-btn" id="search-close-btn" aria-label="Fechar busca">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div id="search-results" class="search-results">
+      <div class="search-empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <p>Digite ao menos 2 letras para buscar</p>
       </div>
     </div>
-    <div id="search-results" class="search-results">
-      <p class="search-hint">Digite para buscar...</p>
-    </div>
+
   </div>
 </div>
+
 <style>
-  .search-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 2000; display: flex; align-items: flex-start; justify-content: center; padding-top: 8vh; }
-  .search-modal { background: #fff; border-radius: 14px; width: 100%; max-width: 580px; margin: 0 1rem; box-shadow: 0 20px 60px rgba(0,0,0,0.25); overflow: hidden; }
-  .search-header { padding: 1rem; border-bottom: 1px solid #f3f4f6; }
-  .search-input-wrap { display: flex; align-items: center; gap: 0.75rem; }
-  .search-icon { color: #9ca3af; flex-shrink: 0; }
-  #search-input { flex: 1; border: none; outline: none; font-size: 1rem; color: #1f2937; background: transparent; }
-  .search-close-btn { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #f3f4f6; border: none; border-radius: 6px; color: #6b7280; cursor: pointer; flex-shrink: 0; transition: background 0.15s, color 0.15s; }
-  .search-close-btn:hover { background: #e5e7eb; color: #111827; }
-  .search-results { padding: 1rem; min-height: 100px; max-height: 420px; overflow-y: auto; }
-  .search-hint { color: #9ca3af; font-size: 0.9rem; text-align: center; margin: 1.25rem 0; }
-  .search-result-item { display: flex; flex-direction: column; padding: 0.75rem; border-radius: 8px; text-decoration: none; color: inherit; transition: background 0.15s; gap: 0.15rem; }
-  .search-result-item + .search-result-item { border-top: 1px solid #f3f4f6; }
-  .search-result-item:hover { background: #f9fafb; }
-  .search-result-category { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #2563eb; }
-  .search-result-title { font-weight: 600; font-size: 0.95rem; color: #1f2937; }
-  .search-result-desc { font-size: 0.82rem; color: #6b7280; }
+  .search-overlay {
+    position: fixed; inset: 0;
+    background: rgba(15,15,20,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    display: flex; align-items: flex-start; justify-content: center;
+    padding-top: 7vh;
+    animation: overlayIn 0.18s ease;
+  }
+  @keyframes overlayIn { from { opacity: 0 } to { opacity: 1 } }
+
+  .search-modal {
+    background: #fff;
+    border-radius: 16px;
+    width: 100%; max-width: 600px;
+    margin: 0 1rem;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.22), 0 0 0 1px rgba(0,0,0,0.06);
+    overflow: hidden;
+    animation: modalIn 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes modalIn { from { opacity:0; transform: translateY(-12px) scale(0.97) } to { opacity:1; transform: none } }
+
+  .search-header {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 1rem 1rem 1rem 1.25rem;
+    border-bottom: 1.5px solid #f3f4f6;
+  }
+  .search-header-icon { color: #9ca3af; flex-shrink: 0; }
+  #search-input {
+    flex: 1; border: none; outline: none;
+    font-size: 1.05rem; color: #111827; background: transparent;
+    font-family: inherit;
+  }
+  #search-input::placeholder { color: #c4c9d4; }
+  .search-close-btn {
+    display: flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px;
+    background: #f3f4f6; border: none; border-radius: 6px;
+    color: #9ca3af; cursor: pointer; flex-shrink: 0;
+    transition: background 0.15s, color 0.15s;
+  }
+  .search-close-btn:hover { background: #e5e7eb; color: #374151; }
+
+  .search-results {
+    max-height: 430px; overflow-y: auto;
+    padding: 0.5rem;
+  }
+  .search-results:empty { display: none; }
 </style>
+
+<style is:global>
+  .search-empty {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0.6rem; padding: 2.25rem 1rem;
+    color: #c4c9d4;
+  }
+  .search-empty p { font-size: 0.9rem; margin: 0; }
+
+  .search-no-result {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0.5rem; padding: 2rem 1rem;
+    color: #9ca3af;
+  }
+  .search-no-result strong { font-size: 0.95rem; color: #374151; }
+  .search-no-result span { font-size: 0.82rem; }
+
+  .sr-item {
+    display: flex; align-items: center; gap: 0.875rem;
+    padding: 0.75rem 0.875rem;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background 0.12s;
+    cursor: pointer;
+  }
+  .sr-item:hover { background: #f5f7ff; }
+  .sr-item + .sr-item { border-top: 1px solid #f3f4f6; }
+
+  .sr-icon-wrap {
+    display: flex; align-items: center; justify-content: center;
+    width: 38px; height: 38px; border-radius: 9px;
+    background: #f0f4ff; flex-shrink: 0;
+    color: #2563eb;
+  }
+
+  .sr-body { flex: 1; min-width: 0; }
+  .sr-cat {
+    display: inline-block;
+    font-size: 0.68rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.07em;
+    color: #2563eb;
+    margin-bottom: 0.2rem;
+  }
+  .sr-title {
+    display: block;
+    font-size: 0.92rem; font-weight: 600;
+    color: #111827; line-height: 1.35;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .sr-desc {
+    display: block;
+    font-size: 0.79rem; color: #9ca3af;
+    margin-top: 0.15rem;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+
+  .sr-arrow { color: #d1d5db; flex-shrink: 0; }
+  .sr-item:hover .sr-arrow { color: #2563eb; }
+</style>
+
 <script is:inline>
-  (function(){
-    var overlay = document.getElementById('search-overlay');
-    var input = document.getElementById('search-input');
-    var results = document.getElementById('search-results');
-    var closeBtn = document.getElementById('search-close-btn');
-    var postsCache = null;
+(function(){
+  var overlay  = document.getElementById('search-overlay');
+  var input    = document.getElementById('search-input');
+  var results  = document.getElementById('search-results');
+  var closeBtn = document.getElementById('search-close-btn');
+  var cache    = null;
 
-    function resetResults() {
-      if (results) results.innerHTML = '<p class="search-hint">Digite para buscar...</p>';
-    }
+  var EMPTY_HTML = '<div class="search-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><p>Digite ao menos 2 letras para buscar</p></div>';
 
-    function openSearch() {
-      if (!overlay) return;
-      overlay.style.display = 'flex';
-      setTimeout(function(){ if (input) input.focus(); }, 50);
-    }
+  var ICON_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>';
 
-    function closeSearch() {
-      if (!overlay) return;
-      overlay.style.display = 'none';
-      if (input) input.value = '';
-      resetResults();
-    }
+  var ARROW_SVG = '<svg class="sr-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polyline points="9 18 15 12 9 6"/></svg>';
 
-    async function fetchPosts() {
-      if (postsCache) return postsCache;
-      try {
-        var resp = await fetch('/search-index.json');
-        postsCache = await resp.json();
-      } catch(e) {
-        postsCache = [];
-      }
-      return postsCache;
-    }
+  function esc(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
 
-    function escapeHtml(str) {
-      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-    }
+  function openSearch() {
+    if (!overlay) return;
+    overlay.style.display = 'flex';
+    setTimeout(function(){ if (input) input.focus(); }, 40);
+    if (cache === null) fetchPosts();
+  }
 
-    if (input) {
-      input.addEventListener('input', function() {
-        var q = this.value.trim().toLowerCase();
-        if (!q || q.length < 2) { resetResults(); return; }
-        fetchPosts().then(function(data) {
-          var filtered = data.filter(function(p) {
-            return p.title.toLowerCase().includes(q) ||
-              (p.description && p.description.toLowerCase().includes(q)) ||
-              (p.category && p.category.toLowerCase().includes(q));
-          });
-          if (filtered.length === 0) {
-            results.innerHTML = '<p class="search-hint">Nenhum resultado encontrado para "' + escapeHtml(q) + '".</p>';
-            return;
-          }
-          results.innerHTML = filtered.map(function(p) {
-            return '<a href="' + escapeHtml(p.url) + '" class="search-result-item">' +
-              (p.category ? '<span class="search-result-category">' + escapeHtml(p.category) + '</span>' : '') +
-              '<span class="search-result-title">' + escapeHtml(p.title) + '</span>' +
-              (p.description ? '<span class="search-result-desc">' + escapeHtml(p.description) + '</span>' : '') +
-              '</a>';
-          }).join('');
-          results.querySelectorAll('.search-result-item').forEach(function(link) {
-            link.addEventListener('click', closeSearch);
-          });
+  function closeSearch() {
+    if (!overlay) return;
+    overlay.style.display = 'none';
+    if (input) input.value = '';
+    if (results) results.innerHTML = EMPTY_HTML;
+  }
+
+  async function fetchPosts() {
+    try {
+      var r = await fetch('/search-index.json');
+      cache = await r.json();
+    } catch(e) { cache = []; }
+    return cache;
+  }
+
+  if (input) {
+    input.addEventListener('input', function() {
+      var q = this.value.trim().toLowerCase();
+      if (!q || q.length < 2) { results.innerHTML = EMPTY_HTML; return; }
+
+      (cache ? Promise.resolve(cache) : fetchPosts()).then(function(data) {
+        var hits = data.filter(function(p) {
+          return p.title.toLowerCase().includes(q) ||
+            (p.description && p.description.toLowerCase().includes(q)) ||
+            (p.category && p.category.toLowerCase().includes(q));
+        });
+
+        if (!hits.length) {
+          results.innerHTML = '<div class="search-no-result"><strong>Nenhum resultado para &ldquo;' + esc(q) + '&rdquo;</strong><span>Tente outras palavras ou navegue pelas categorias</span></div>';
+          return;
+        }
+
+        results.innerHTML = hits.map(function(p) {
+          return '<a href="' + esc(p.url) + '" class="sr-item">' +
+            '<span class="sr-icon-wrap">' + ICON_SVG + '</span>' +
+            '<span class="sr-body">' +
+              (p.category ? '<span class="sr-cat">' + esc(p.category) + '</span>' : '') +
+              '<span class="sr-title">' + esc(p.title) + '</span>' +
+              (p.description ? '<span class="sr-desc">' + esc(p.description) + '</span>' : '') +
+            '</span>' +
+            ARROW_SVG +
+          '</a>';
+        }).join('');
+
+        results.querySelectorAll('.sr-item').forEach(function(el) {
+          el.addEventListener('click', closeSearch);
         });
       });
-    }
-
-    document.getElementById('search-trigger')?.addEventListener('click', openSearch);
-    document.addEventListener('open-search', openSearch);
-    closeBtn?.addEventListener('click', closeSearch);
-
-    document.addEventListener('keydown', function(e) {
-      if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
-      if (e.key === 'Escape' && overlay && overlay.style.display !== 'none') closeSearch();
     });
+  }
 
-    overlay?.addEventListener('click', function(e) {
-      if (e.target === overlay) closeSearch();
-    });
-  })();
+  document.getElementById('search-trigger')?.addEventListener('click', openSearch);
+  document.addEventListener('open-search', openSearch);
+  closeBtn?.addEventListener('click', closeSearch);
+  overlay?.addEventListener('click', function(e){ if (e.target === overlay) closeSearch(); });
+  document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+    if (e.key === 'Escape' && overlay && overlay.style.display !== 'none') closeSearch();
+  });
+})();
 </script>
