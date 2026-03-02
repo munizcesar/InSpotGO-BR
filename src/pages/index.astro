@@ -30,6 +30,30 @@ const latestPosts = allPosts
     </div>
   </section>
 
+  <!-- Posts em Destaque -->
+  {featuredPosts.length > 0 && (
+    <section class="posts-section">
+      <div class="container">
+        <h2 class="section-title">Em Destaque</h2>
+        <div class="posts-grid">
+          {featuredPosts.map(post => (
+            <div class="post-card-wrapper">
+              {post.data.category && <a href={`/${post.data.category.toLowerCase()}`} class="post-card-cat">{post.data.category}</a>}
+              <a href={`/posts/${post.slug}`} class="post-card">
+                {post.data.cover && <img src={post.data.cover} alt={post.data.title} loading="lazy" class="post-card-img" />}
+                <div class="post-card-body">
+                  <h3 class="post-card-title">{post.data.title}</h3>
+                  <p class="post-card-desc">{post.data.description}</p>
+                  {post.data.readTime && <span class="post-card-read">{post.data.readTime} de leitura</span>}
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <!-- Categorias -->
   <section class="categories-section">
     <div class="container">
@@ -58,30 +82,6 @@ const latestPosts = allPosts
       </div>
     </div>
   </section>
-
-  <!-- Posts em Destaque -->
-  {featuredPosts.length > 0 && (
-    <section class="posts-section">
-      <div class="container">
-        <h2 class="section-title">Em Destaque</h2>
-        <div class="posts-grid">
-          {featuredPosts.map(post => (
-            <div class="post-card-wrapper">
-              {post.data.category && <a href={`/${post.data.category.toLowerCase()}`} class="post-card-cat">{post.data.category}</a>}
-              <a href={`/posts/${post.slug}`} class="post-card">
-                {post.data.cover && <img src={post.data.cover} alt={post.data.title} loading="lazy" class="post-card-img" />}
-                <div class="post-card-body">
-                  <h3 class="post-card-title">{post.data.title}</h3>
-                  <p class="post-card-desc">{post.data.description}</p>
-                  {post.data.readTime && <span class="post-card-read">{post.data.readTime} de leitura</span>}
-                </div>
-              </a>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
 
   <!-- Últimos Posts -->
   <section class="posts-section posts-latest">
