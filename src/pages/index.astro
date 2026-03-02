@@ -58,64 +58,112 @@ const latestPosts = allPosts
   <section class="posts-section posts-latest">
     <div class="container">
       <div class="latest-header">
-        <h2 class="section-title">Últimos Reviews</h2>
+        <h2 class="section-title latest-section-title">Últimos Reviews</h2>
         <p class="latest-desc">Fique por dentro com nossos últimos artigos, reviews e guias de compra</p>
       </div>
-      
+
       {latestPosts.length > 0 && (
         <div class="latest-layout">
-          <!-- Post Principal Mais Recente (Esquerda) -->
-          <div class="latest-main">
-            {latestPosts[0] && (
-              <div class="latest-main-card">
-                {latestPosts[0].data.cover && (
-                  <img src={latestPosts[0].data.cover} alt={latestPosts[0].data.title} class="latest-main-img" />
+
+          <!-- Coluna Esquerda -->
+          <div class="latest-left">
+            <!-- Post Principal (grande) -->
+            <div class="latest-main-card">
+              {latestPosts[0].data.cover
+                ? <img src={latestPosts[0].data.cover} alt={latestPosts[0].data.title} class="latest-main-img" />
+                : <div class="latest-main-img-placeholder" />
+              }
+              <div class="latest-main-badge-wrapper">
+                {latestPosts[0].data.category && (
+                  <a href={`/${latestPosts[0].data.category.toLowerCase()}`} class="latest-badge">{latestPosts[0].data.category}</a>
                 )}
-                <div class="latest-main-badge-wrapper">
-                  {latestPosts[0].data.category && (
-                    <a href={`/${latestPosts[0].data.category.toLowerCase()}`} class="latest-badge">{latestPosts[0].data.category}</a>
+              </div>
+              <div class="latest-main-content">
+                <h3 class="latest-main-title">
+                  <a href={`/posts/${latestPosts[0].slug}`}>{latestPosts[0].data.title}</a>
+                </h3>
+                <p class="latest-main-desc">{latestPosts[0].data.description}</p>
+                <div class="latest-main-meta">
+                  {latestPosts[0].data.date && (
+                    <span>{new Date(latestPosts[0].data.date).toLocaleDateString('pt-BR', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
                   )}
-                </div>
-                <div class="latest-main-content">
-                  <h3 class="latest-main-title">
-                    <a href={`/posts/${latestPosts[0].slug}`}>{latestPosts[0].data.title}</a>
-                  </h3>
-                  <p class="latest-main-desc">{latestPosts[0].data.description}</p>
-                  <div class="latest-main-meta">
-                    {latestPosts[0].data.readTime && <span>⏱ {latestPosts[0].data.readTime}</span>}
-                    {latestPosts[0].data.date && (
-                      <span>
-                        {new Date(latestPosts[0].data.date).toLocaleDateString('pt-BR', { month: 'short', day: 'numeric', year: 'numeric' })}
-                      </span>
-                    )}
-                  </div>
+                  {latestPosts[0].data.readTime && <span>{latestPosts[0].data.readTime} de leitura</span>}
                 </div>
               </div>
+            </div>
+
+            <!-- Grid 2 colunas com os demais posts -->
+            {latestPosts.length > 1 && (
+              <div class="latest-sub-grid">
+                {latestPosts.slice(1).map(post => (
+                  <div class="post-card-wrapper">
+                    {post.data.category && (
+                      <a href={`/${post.data.category.toLowerCase()}`} class="post-card-cat">{post.data.category}</a>
+                    )}
+                    <a href={`/posts/${post.slug}`} class="post-card">
+                      {post.data.cover
+                        ? <img src={post.data.cover} alt={post.data.title} loading="lazy" class="post-card-img" />
+                        : <div class="post-card-img-placeholder" />
+                      }
+                      <div class="post-card-body">
+                        <h3 class="post-card-title">{post.data.title}</h3>
+                        <p class="post-card-desc">{post.data.description}</p>
+                        <div class="post-card-meta">
+                          {post.data.date && (
+                            <span class="post-card-date">{new Date(post.data.date).toLocaleDateString('pt-BR', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                          )}
+                          {post.data.readTime && <span class="post-card-read">{post.data.readTime}</span>}
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                ))}
+              </div>
             )}
+
+            <!-- Botão Ver Todos -->
+            <div class="view-all-wrapper">
+              <a href="/saas" class="view-all-btn">Ver Todos os Artigos →</a>
+            </div>
           </div>
 
-          <!-- Em Alta (Direita) -->
-          <aside class="trending-sidebar">
-            <h3 class="trending-title">📈 Em Alta</h3>
-            <div class="trending-list">
-              {featuredPosts.slice(0, 5).map((post, index) => (
-                <a href={`/posts/${post.slug}`} class="trending-item">
-                  <div class="trending-number">{index + 1}</div>
-                  <div class="trending-content">
-                    {post.data.category && (
-                      <span class="trending-badge">{post.data.category}</span>
-                    )}
-                    <h4 class="trending-item-title">{post.data.title}</h4>
-                    {post.data.date && (
-                      <span class="trending-date">
-                        {new Date(post.data.date).toLocaleDateString('pt-BR', { month: 'short', day: 'numeric' })}
-                      </span>
-                    )}
-                  </div>
-                </a>
-              ))}
+          <!-- Coluna Direita (Sidebar) -->
+          <aside class="latest-sidebar">
+
+            <!-- Em Alta -->
+            <div class="sidebar-block">
+              <h3 class="sidebar-title">📈 Em Alta</h3>
+              <div class="trending-list">
+                {latestPosts.slice(0, 5).map((post, index) => (
+                  <a href={`/posts/${post.slug}`} class="trending-item">
+                    <div class="trending-number">{index + 1}</div>
+                    <div class="trending-content">
+                      {post.data.category && (
+                        <span class="trending-badge">{post.data.category}</span>
+                      )}
+                      <h4 class="trending-item-title">{post.data.title}</h4>
+                      {post.data.date && (
+                        <span class="trending-date">
+                          {new Date(post.data.date).toLocaleDateString('pt-BR', { month: 'short', day: 'numeric' })}
+                        </span>
+                      )}
+                    </div>
+                  </a>
+                ))}
+              </div>
+              <a href="/saas" class="sidebar-all-btn">Ver Todos os Posts →</a>
             </div>
-            <a href="/saas" class="view-all-btn">Ver Todos os Posts →</a>
+
+            <!-- Fique por Dentro (Newsletter) -->
+            <div class="sidebar-block newsletter-block">
+              <h3 class="newsletter-title">Fique por Dentro</h3>
+              <p class="newsletter-desc">Receba os melhores reviews direto no seu e-mail</p>
+              <form class="newsletter-form" onsubmit="return false;">
+                <input type="email" placeholder="Seu e-mail" class="newsletter-input" />
+                <button type="submit" class="newsletter-btn">Assinar</button>
+              </form>
+            </div>
+
           </aside>
         </div>
       )}
@@ -173,50 +221,89 @@ const latestPosts = allPosts
   .category-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; }
   .category-card p { font-size: 0.875rem; color: var(--color-text-light); line-height: 1.5; }
   .posts-section { padding: 2rem 0 3rem; }
-  .latest-header { margin-bottom: 2rem; }
+  .latest-header { text-align: center; margin-bottom: 2.5rem; }
+  .latest-section-title { font-size: 2rem; }
   .latest-desc { color: var(--color-text-light); font-size: 0.95rem; margin-top: 0.5rem; }
-  .latest-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: start; }
-  .latest-main-card { background: #fff; border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; transition: box-shadow 0.3s, transform 0.3s; }
-  .latest-main-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,0.12); transform: translateY(-4px); }
-  .latest-main-img { width: 100%; height: 340px; object-fit: cover; display: block; }
-  .latest-main-badge-wrapper { position: relative; margin-top: -2.5rem; margin-left: 1.5rem; margin-bottom: 1rem; z-index: 10; }
-  .latest-badge { display: inline-block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #fff; background: var(--color-primary); padding: 0.4rem 1rem; border-radius: 100px; text-decoration: none; transition: background 0.2s; }
+
+  /* Layout principal 2 colunas */
+  .latest-layout { display: grid; grid-template-columns: 1fr 340px; gap: 2.5rem; align-items: start; }
+
+  /* Coluna esquerda */
+  .latest-left { display: flex; flex-direction: column; gap: 2rem; }
+
+  /* Post grande (topo esquerda) */
+  .latest-main-card { background: #fff; border: 1px solid var(--color-border); border-radius: 14px; overflow: hidden; transition: box-shadow 0.3s, transform 0.3s; }
+  .latest-main-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,0.12); transform: translateY(-3px); }
+  .latest-main-img { width: 100%; height: 380px; object-fit: cover; display: block; }
+  .latest-main-img-placeholder { width: 100%; height: 380px; background: linear-gradient(135deg, #e0e7ff, #f3f4f6); }
+  .latest-main-badge-wrapper { margin: 1.25rem 1.5rem 0.5rem; }
+  .latest-badge { display: inline-block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #fff; background: var(--color-primary); padding: 0.35rem 0.9rem; border-radius: 100px; text-decoration: none; transition: background 0.2s; }
   .latest-badge:hover { background: var(--color-primary-dark); }
-  .latest-main-content { padding: 0 1.5rem 1.5rem; }
-  .latest-main-title a { color: inherit; text-decoration: none; font-size: 1.5rem; font-weight: 800; line-height: 1.25; transition: color 0.2s; }
+  .latest-main-content { padding: 0.5rem 1.5rem 1.75rem; }
+  .latest-main-title a { color: inherit; text-decoration: none; font-size: 1.6rem; font-weight: 800; line-height: 1.2; transition: color 0.2s; display: block; }
   .latest-main-title a:hover { color: var(--color-primary); }
-  .latest-main-desc { color: var(--color-text-light); font-size: 0.95rem; line-height: 1.6; margin: 0.75rem 0; }
-  .latest-main-meta { display: flex; gap: 1rem; font-size: 0.85rem; color: var(--color-text-light); margin-top: 0.75rem; }
-  .trending-sidebar { display: flex; flex-direction: column; gap: 1.25rem; }
-  .trending-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
-  .trending-list { display: flex; flex-direction: column; gap: 1rem; }
-  .trending-item { display: flex; gap: 1rem; padding: 0.875rem; background: #f9fafb; border-radius: 10px; text-decoration: none; color: inherit; transition: background 0.2s, transform 0.2s; }
-  .trending-item:hover { background: #f3f4f6; transform: translateX(4px); }
-  .trending-number { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; min-width: 32px; background: var(--color-action); color: #fff; border-radius: 50%; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
-  .trending-content { display: flex; flex-direction: column; gap: 0.3rem; flex: 1; }
-  .trending-badge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #fff; background: var(--color-primary); padding: 0.2rem 0.6rem; border-radius: 100px; width: fit-content; }
-  .trending-item-title { font-size: 0.9rem; font-weight: 600; line-height: 1.3; color: #1f2937; }
-  .trending-date { font-size: 0.75rem; color: var(--color-text-lighter); }
-  .view-all-btn { display: block; text-align: center; background: var(--gradient-action, linear-gradient(135deg,#f97316,#ec4899)); color: #fff; font-weight: 600; font-size: 0.9rem; padding: 0.75rem 1.25rem; border-radius: 8px; text-decoration: none; transition: opacity 0.2s, transform 0.2s; margin-top: 1rem; }
+  .latest-main-desc { color: var(--color-text-light); font-size: 0.95rem; line-height: 1.65; margin: 0.75rem 0 0; }
+  .latest-main-meta { display: flex; gap: 1rem; font-size: 0.82rem; color: var(--color-text-lighter); margin-top: 1rem; }
+
+  /* Sub-grid 2 colunas */
+  .latest-sub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+  /* Botão ver todos */
+  .view-all-wrapper { display: flex; justify-content: center; }
+  .view-all-btn { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--gradient-action, linear-gradient(135deg,#f97316,#ec4899)); color: #fff; font-weight: 600; font-size: 0.9rem; padding: 0.75rem 2rem; border-radius: 100px; text-decoration: none; transition: opacity 0.2s, transform 0.2s; }
   .view-all-btn:hover { opacity: 0.88; transform: translateY(-2px); }
-  .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+
+  /* Sidebar direita */
+  .latest-sidebar { display: flex; flex-direction: column; gap: 1.5rem; position: sticky; top: 80px; }
+  .sidebar-block { background: #fff; border: 1px solid var(--color-border); border-radius: 14px; padding: 1.5rem; }
+  .sidebar-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 1.25rem; border-bottom: 2px solid var(--color-border); padding-bottom: 0.75rem; }
+
+  /* Em Alta */
+  .trending-list { display: flex; flex-direction: column; gap: 0.875rem; }
+  .trending-item { display: flex; gap: 0.875rem; padding: 0.75rem; border-radius: 10px; text-decoration: none; color: inherit; transition: background 0.2s; }
+  .trending-item:hover { background: #f9fafb; }
+  .trending-number { display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; min-width: 30px; background: var(--color-action, #f97316); color: #fff; border-radius: 50%; font-weight: 700; font-size: 0.85rem; flex-shrink: 0; }
+  .trending-content { display: flex; flex-direction: column; gap: 0.25rem; flex: 1; }
+  .trending-badge { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #fff; background: var(--color-primary); padding: 0.15rem 0.55rem; border-radius: 100px; width: fit-content; }
+  .trending-item-title { font-size: 0.875rem; font-weight: 600; line-height: 1.3; color: #1f2937; }
+  .trending-date { font-size: 0.72rem; color: var(--color-text-lighter); }
+  .sidebar-all-btn { display: block; text-align: center; background: var(--gradient-action, linear-gradient(135deg,#f97316,#ec4899)); color: #fff; font-weight: 600; font-size: 0.85rem; padding: 0.65rem 1rem; border-radius: 8px; text-decoration: none; transition: opacity 0.2s; margin-top: 1.25rem; }
+  .sidebar-all-btn:hover { opacity: 0.88; }
+
+  /* Newsletter */
+  .newsletter-block { background: linear-gradient(135deg, #312e81, #4c1d95); border: none; color: #fff; }
+  .newsletter-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; color: #fff; border-bottom: none; padding-bottom: 0; }
+  .newsletter-desc { font-size: 0.82rem; color: rgba(255,255,255,0.75); margin-bottom: 1.25rem; line-height: 1.5; }
+  .newsletter-form { display: flex; flex-direction: column; gap: 0.625rem; }
+  .newsletter-input { padding: 0.65rem 1rem; border-radius: 8px; border: none; font-size: 0.875rem; outline: none; background: rgba(255,255,255,0.95); }
+  .newsletter-btn { padding: 0.65rem 1rem; border-radius: 8px; border: none; background: #fff; color: #312e81; font-weight: 700; font-size: 0.875rem; cursor: pointer; transition: background 0.2s; }
+  .newsletter-btn:hover { background: #f3f4f6; }
+
+  /* Post cards sub-grid */
   .post-card-wrapper { position: relative; }
-  .post-card { background: #fff; border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: box-shadow 0.2s, transform 0.2s; display: flex; flex-direction: column; }
+  .post-card { background: #fff; border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: box-shadow 0.2s, transform 0.2s; display: flex; flex-direction: column; height: 100%; }
   .post-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.1); transform: translateY(-2px); }
   .post-card-img { width: 100%; height: 180px; object-fit: cover; }
-  .post-card-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
-  .post-card-cat { position: absolute; top: 1rem; left: 1rem; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #fff; background: var(--color-primary); padding: 0.25rem 0.75rem; border-radius: 100px; text-decoration: none; transition: background 0.2s ease; z-index: 10; }
-  .post-card-cat:hover { background: var(--color-primary-dark, #5a67d8); }
-  .post-card-title { font-size: 1rem; font-weight: 700; line-height: 1.35; }
-  .post-card-desc { font-size: 0.875rem; color: var(--color-text-light); line-height: 1.5; flex: 1; }
-  .post-card-read { font-size: 0.78rem; color: var(--color-text-lighter); }
+  .post-card-img-placeholder { width: 100%; height: 180px; background: linear-gradient(135deg, #e0e7ff, #f3f4f6); }
+  .post-card-body { padding: 1.1rem; flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
+  .post-card-cat { position: absolute; top: 0.75rem; left: 0.75rem; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #fff; background: var(--color-primary); padding: 0.2rem 0.65rem; border-radius: 100px; text-decoration: none; z-index: 10; transition: background 0.2s; }
+  .post-card-cat:hover { background: var(--color-primary-dark); }
+  .post-card-title { font-size: 0.95rem; font-weight: 700; line-height: 1.35; }
+  .post-card-desc { font-size: 0.82rem; color: var(--color-text-light); line-height: 1.5; flex: 1; }
+  .post-card-meta { display: flex; gap: 0.75rem; margin-top: 0.4rem; }
+  .post-card-date { font-size: 0.75rem; color: var(--color-text-lighter); }
+  .post-card-read { font-size: 0.75rem; color: var(--color-text-lighter); }
+  @media (max-width: 1024px) {
+    .latest-layout { grid-template-columns: 1fr 300px; }
+  }
   @media (max-width: 768px) {
     .hero { padding: 3rem 0 2.5rem; }
     .hero-actions { flex-direction: column; }
     .btn { text-align: center; justify-content: center; }
-    .posts-grid { grid-template-columns: 1fr; }
     .latest-layout { grid-template-columns: 1fr; }
+    .latest-sidebar { position: static; }
     .latest-main-img { height: 240px; }
-    .trending-sidebar { }
+    .latest-main-img-placeholder { height: 240px; }
+    .latest-sub-grid { grid-template-columns: 1fr; }
   }
 </style>
