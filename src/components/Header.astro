@@ -33,12 +33,11 @@ const currentPath = Astro.url.pathname;
     </nav>
 
     <div class="header-right">
-      <button class="search-pill" id="search-trigger" aria-label="Buscar" title="Buscar (Ctrl+K)">
+      <button class="search-pill" id="search-trigger" aria-label="Buscar">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
           <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
         </svg>
         <span class="search-pill-text">Buscar reviews e guias...</span>
-        <kbd class="search-pill-kbd">⌘K</kbd>
       </button>
       <button class="search-icon-btn mobile-search-btn" id="search-trigger-mobile" aria-label="Buscar">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
@@ -119,11 +118,11 @@ const currentPath = Astro.url.pathname;
   .logo-spot { color: var(--color-primary); }
   .logo-go { background: var(--gradient-logo-go, linear-gradient(90deg,#f97316,#ec4899)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .logo-br { font-size: 0.65rem; font-weight: 700; color: #fff; background: #10b981; border-radius: 3px; padding: 0.1rem 0.35rem; margin-left: 0.25rem; letter-spacing: 0.03em; -webkit-text-fill-color: #fff; line-height: 1; vertical-align: baseline; }
-  .mobile-menu-toggle { display: none; flex-direction: column; justify-content: space-around; width: 2rem; height: 2rem; background: transparent; border: none; cursor: pointer; padding: 0; flex-shrink: 0; }
-  .hamburger { width: 1.75rem; height: 2px; background: var(--color-text); border-radius: 4px; transition: all 0.35s cubic-bezier(0.65, 0.05, 0.36, 1); transform-origin: center; display: block; }
-  .mobile-menu-toggle.active .hamburger:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-  .mobile-menu-toggle.active .hamburger:nth-child(2) { opacity: 0; }
-  .mobile-menu-toggle.active .hamburger:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+  .mobile-menu-toggle { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 6px; width: 2rem; height: 2rem; background: transparent; border: none; cursor: pointer; padding: 0; flex-shrink: 0; }
+  .hamburger { width: 1.75rem; height: 2px; background: var(--color-text); border-radius: 4px; transition: all 0.35s cubic-bezier(0.65, 0.05, 0.36, 1); transform-origin: center; display: block; flex-shrink: 0; }
+  .mobile-menu-toggle.active .hamburger:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .mobile-menu-toggle.active .hamburger:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .mobile-menu-toggle.active .hamburger:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
   .desktop-nav { display: flex; align-items: center; gap: 1.75rem; flex: 1; justify-content: center; }
   .nav-link { color: var(--color-text); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.2s; position: relative; white-space: nowrap; }
   .nav-link::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 2px; background: var(--color-primary); transition: width 0.25s; }
@@ -135,7 +134,6 @@ const currentPath = Astro.url.pathname;
   .search-pill:hover { border-color: var(--color-primary); background: #fff; box-shadow: 0 0 0 3px rgba(37,99,235,0.08); }
   .search-pill svg { color: #9ca3af; flex-shrink: 0; }
   .search-pill-text { font-size: 0.82rem; color: #9ca3af; flex: 1; text-align: left; min-width: 160px; }
-  .search-pill-kbd { font-size: 0.65rem; color: #9ca3af; background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 5px; padding: 0.1rem 0.35rem; font-family: inherit; flex-shrink: 0; }
   .mobile-search-btn { display: none; }
   .drawer-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 999; opacity: 0; transition: opacity 0.3s; }
   .drawer-backdrop.active { display: block; opacity: 1; }
@@ -187,8 +185,7 @@ const currentPath = Astro.url.pathname;
     const mobileSearch = document.getElementById('search-trigger-mobile');
     if (mobileSearch) {
       mobileSearch.addEventListener('click', function() {
-        const dt = document.getElementById('search-trigger');
-        if (dt) dt.click(); else document.dispatchEvent(new CustomEvent('open-search'));
+        document.dispatchEvent(new CustomEvent('open-search'));
       });
     }
     function openDrawer() {
