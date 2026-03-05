@@ -7,10 +7,12 @@ const year = new Date().getFullYear();
   <div class="container">
     <div class="footer-content">
       <div class="footer-brand">
-        <div class="footer-logo-text">
-          <span class="logo-spot">InSpot</span><span class="logo-go">GO</span>
-          <span class="logo-br-badge">BR</span>
-        </div>
+        <a href="/" class="footer-logo-link" aria-label="InSpotGO BR — página inicial">
+          <img src="/images/brand/logo.png" alt="" class="footer-logo-icon" height="38" width="38" />
+          <div class="footer-logo-text">
+            <span class="logo-spot">InSpot</span><span class="logo-go">GO</span><span class="logo-br-badge">BR</span>
+          </div>
+        </a>
         <p class="footer-tagline">Encontre o Melhor. Decida com Confiança.</p>
         <p class="footer-description">Reviews independentes de SaaS e software — ajudando profissionais e empresas brasileiras a escolher as melhores ferramentas digitais.</p>
       </div>
@@ -51,7 +53,10 @@ const year = new Date().getFullYear();
   .footer { background: var(--color-bg-alt); border-top: 1px solid var(--color-border); padding: 3rem 0 2rem; margin-top: 4rem; }
   .footer-content { display: grid; grid-template-columns: 1.5fr 2fr; gap: 3rem; max-width: 1400px; margin: 0 auto; padding: 0 1.5rem; }
   .footer-brand { display: flex; flex-direction: column; gap: 0.75rem; }
-  .footer-logo-text { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.5rem; display: flex; align-items: baseline; gap: 0.2rem; }
+  .footer-logo-link { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; margin-bottom: 0.25rem; transition: transform 0.25s; }
+  .footer-logo-link:hover { transform: scale(1.04); }
+  .footer-logo-icon { display: block; flex-shrink: 0; }
+  .footer-logo-text { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.02em; display: flex; align-items: center; gap: 0; line-height: 1.2; }
   .logo-spot { color: var(--color-primary); }
   .logo-go { background: var(--gradient-logo-go, linear-gradient(90deg,#f97316,#ec4899)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .logo-br-badge { font-size: 0.8rem; font-weight: 700; color: #fff; background: #10b981; border-radius: 5px; padding: 0.1rem 0.4rem; letter-spacing: 0.04em; -webkit-text-fill-color: #fff; }
@@ -69,7 +74,6 @@ const year = new Date().getFullYear();
     .footer { padding: 2rem 0 1.5rem; }
     .footer-content { grid-template-columns: 1fr; gap: 2rem; padding: 0 1rem; }
     .footer-links { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    .footer-logo-text { font-size: 1.75rem; }
     .footer-bottom { padding-left: 1rem; padding-right: 1rem; }
     .footer-description { max-width: 100%; }
   }
