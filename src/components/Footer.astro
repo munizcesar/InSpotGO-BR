@@ -56,10 +56,10 @@ const year = new Date().getFullYear();
   .footer-logo-link { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; margin-bottom: 0.25rem; transition: transform 0.25s; }
   .footer-logo-link:hover { transform: scale(1.04); }
   .footer-logo-icon { display: block; flex-shrink: 0; }
-  .footer-logo-text { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.02em; display: flex; align-items: center; gap: 0; line-height: 1.2; }
+  .footer-logo-text { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.02em; display: flex; align-items: center; gap: 0; line-height: 1.2; white-space: nowrap; user-select: none; }
   .logo-spot { color: var(--color-primary); }
   .logo-go { background: var(--gradient-logo-go, linear-gradient(90deg,#f97316,#ec4899)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  .logo-br-badge { font-size: 0.8rem; font-weight: 700; color: #fff; background: #10b981; border-radius: 5px; padding: 0.1rem 0.4rem; letter-spacing: 0.04em; -webkit-text-fill-color: #fff; }
+  .logo-br-badge { font-size: 0.65rem; font-weight: 700; color: #fff; background: #10b981; border-radius: 3px; padding: 0.1rem 0.35rem; margin-left: 0.25rem; letter-spacing: 0.03em; -webkit-text-fill-color: #fff; line-height: 1; vertical-align: baseline; }
   .footer-tagline { color: var(--color-text); font-size: 0.95rem; font-weight: 600; margin: 0; }
   .footer-description { color: var(--color-text-light); font-size: 0.85rem; line-height: 1.6; margin: 0; max-width: 280px; }
   .footer-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
