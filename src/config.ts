@@ -25,37 +25,20 @@ export const SITE_CONFIG = {
 
   // SEO & Analytics
   analytics: {
-    googleAnalyticsId: '',
+    googleAnalyticsId: 'G-J8MM6VCDNG',
     googleAdsId: '',
   },
 
   // Programas de Afiliados
   affiliates: {
-    // SaaS com programa BR ativo
-    hotmart: {
-      enabled: false, // Ativar quando aprovado
-    },
-    hubspot: {
-      enabled: false,
-    },
-    monday: {
-      enabled: false,
-    },
-    hostinger: {
-      enabled: false,
-    },
-    semrush: {
-      enabled: false,
-    },
-    canva: {
-      enabled: false,
-    },
-    notion: {
-      enabled: false,
-    },
-    clickup: {
-      enabled: false,
-    },
+    hotmart: { enabled: false },
+    hubspot: { enabled: false },
+    monday: { enabled: false },
+    hostinger: { enabled: false },
+    semrush: { enabled: false },
+    canva: { enabled: false },
+    notion: { enabled: false },
+    clickup: { enabled: false },
   },
 
   // Redes Sociais
@@ -74,7 +57,7 @@ export const SITE_CONFIG = {
     darkMode: true,
   },
 
-  // Categorias — apenas SaaS e Software
+  // Categorias
   categories: {
     saas: {
       name: 'SaaS',
@@ -102,7 +85,7 @@ export const SITE_CONFIG = {
     },
   },
 
-  // Configurações de SEO
+  // SEO
   seo: {
     twitterCard: 'summary_large_image',
     language: 'pt-BR',
