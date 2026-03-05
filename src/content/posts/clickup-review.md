@@ -7,6 +7,7 @@ date: 2026-03-01
 readTime: "9 min"
 featured: false
 draft: false
+cover: /images/posts/clickup-review.png
 ---
 
 O slogan do ClickUp é "Um app para substituir todos". É uma afirmação ambiciosa — e incomumente, o ClickUp tem o conjunto de funcionalidades para defendê-la. A questão não é se o ClickUp é poderoso. É se esse poder é acessível o suficiente para realmente impulsionar a adoção em um time real.

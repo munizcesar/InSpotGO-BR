@@ -7,6 +7,7 @@ date: 2026-03-01
 readTime: "8 min"
 featured: true
 draft: false
+cover: /images/posts/notion-review.png
 ---
 
 O Notion se posicionou como a ferramenta que substituiria sua wiki, seu gerenciador de projetos, seu aplicativo de notas e seu banco de dados — tudo de uma vez. Milhões de times apostaram nisso. Este review examina o quão bem o Notion realmente entrega essa promessa em 2026.

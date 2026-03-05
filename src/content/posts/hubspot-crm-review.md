@@ -7,6 +7,7 @@ date: 2026-03-01
 readTime: "10 min"
 featured: true
 draft: false
+cover: /images/posts/hubspot-crm-review.png
 ---
 
 O HubSpot CRM é uma das ferramentas mais recomendadas no mercado SaaS — e por boas razões. Tem uma versão gratuita genuinamente útil, interface polida e suporte em português. Mas à medida que o seu negócio cresce, a conversa sobre preços muda bastante. Este review explica o que você realmente ganha, onde os custos escalam e para quem o HubSpot serve melhor no contexto brasileiro.

@@ -8,7 +8,7 @@ export const SITE_CONFIG = {
   title: 'InSpotGO — Os Melhores SaaS e Softwares para o Mercado Brasileiro',
   description: 'Reviews honestos, comparativos e guias de compra de ferramentas SaaS e softwares. Ajudamos profissionais e empresas brasileiras a escolher as melhores ferramentas digitais.',
   url: 'https://inspotgo.com.br',
-  ogImage: '/og-image.jpg',
+  ogImage: '/images/brand/og-image.png',
 
   // Branding
   slogan: 'Encontre o Melhor. Decida com Confiança.',
