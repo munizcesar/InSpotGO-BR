@@ -7,7 +7,7 @@ date: 2026-03-01
 readTime: "7 min"
 featured: false
 draft: false
-cover: /images/posts/canva-pro-review.png
+cover: /images/posts/canvapro.png
 ---
 
 O Canva se tornou a ferramenta de design padrão para não-designers — times de marketing, gerentes de mídia social, empreendedores e educadores que precisam de visuais com aparência profissional sem curva de aprendizado. O Canva Pro adiciona uma camada significativa de funcionalidades. Este review examina o que o Pro realmente entrega e quem deve pagar por ele.

@@ -7,7 +7,7 @@ date: 2026-03-01
 readTime: "10 min"
 featured: true
 draft: false
-cover: /images/posts/hubspot-crm-review.png
+cover: /images/posts/HUBSPOT.webp
 ---
 
 O HubSpot CRM é uma das ferramentas mais recomendadas no mercado SaaS — e por boas razões. Tem uma versão gratuita genuinamente útil, interface polida e suporte em português. Mas à medida que o seu negócio cresce, a conversa sobre preços muda bastante. Este review explica o que você realmente ganha, onde os custos escalam e para quem o HubSpot serve melhor no contexto brasileiro.
@@ -48,7 +48,7 @@ Para empresas em estágio inicial ou times migrando de planilhas, o plano gratui
 - **Múltiplos pipelines**: apenas um pipeline no gratuito
 - **Lead scoring preditivo**: apenas no tier Enterprise
 
-O modelo de preços do HubSpot é modular — você paga por Hub (Sales, Marketing, Service, CMS, Operations) — o que significa que os custos se acumulam rapidamente se precisar de múiltiplas capacidades.
+O modelo de preços do HubSpot é modular — você paga por Hub (Sales, Marketing, Service, CMS, Operations) — o que significa que os custos se acumulam rapidamente se precisar de múltiplas capacidades.
 
 ## Principais Funcionalidades
 
