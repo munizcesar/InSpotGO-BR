@@ -36,12 +36,6 @@ const categoryColors = {
   Guias: '#f59e0b',
 };
 const catColor = categoryColors[frontmatter.category] || 'var(--color-primary)';
-
-const getProductLink = (product) => {
-  if (product.link) return product.link;
-  const query = encodeURIComponent(product.title);
-  return `https://www.amazon.com.br/s?k=${query}&tag=inspotgobr-20`;
-};
 ---
 
 <BaseLayout
@@ -119,28 +113,6 @@ const getProductLink = (product) => {
           <span>Achou útil? Compartilhe:</span>
           <ShareButtons title={frontmatter.title} url={Astro.url.href} />
         </div>
-
-        <!-- Produtos -->
-        {frontmatter.products && frontmatter.products.length > 0 && (
-          <section class="products-section">
-            <h2>Produtos em Destaque</h2>
-            <div class="products-grid">
-              {frontmatter.products.map((product) => (
-                <div class="product-card-mini">
-                  {product.image && <img src={product.image} alt={product.title} class="product-img" />}
-                  <div class="product-info">
-                    <h3>{product.title}</h3>
-                    {product.description && <p>{product.description}</p>}
-                    {product.rating && <div class="rating">⭐ {product.rating}/5</div>}
-                    <a href={getProductLink(product)} target="_blank" rel="nofollow noopener sponsored" class="btn-check-price">
-                      Ver Preço na Amazon
-                    </a>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
 
         <!-- Posts Relacionados -->
         {relatedPosts.length > 0 && (
@@ -555,19 +527,6 @@ const getProductLink = (product) => {
     font-weight: 500;
   }
 
-  /* Produtos */
-  .products-section {
-    padding: 2rem 2.5rem;
-    border-top: 2px solid var(--color-border);
-  }
-  .products-grid { display: grid; gap: 1.5rem; margin-top: 1.5rem; }
-  .product-card-mini { display: flex; gap: 1.5rem; border: 1px solid var(--color-border); padding: 1.5rem; border-radius: 12px; align-items: center; background: #fafafa; }
-  .product-img { width: 80px; height: 80px; object-fit: contain; background: white; padding: 5px; border-radius: 8px; border: 1px solid #eee; }
-  .product-info h3 { margin: 0 0 0.5rem 0; font-size: 1.1rem; }
-  .product-info p { margin: 0 0 1rem 0; font-size: 0.9rem; color: #666; }
-  .btn-check-price { display: inline-block; background: #FF9900; color: white !important; text-decoration: none !important; padding: 0.6rem 1.2rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; }
-  .btn-check-price:hover { background: #e68a00; }
-
   /* Posts Relacionados */
   .related-posts {
     padding: 2rem 2.5rem;
@@ -667,9 +626,8 @@ const getProductLink = (product) => {
     .post-content { padding: 1.5rem; font-size: 1rem; }
     .post-title { font-size: 1.75rem; }
     .post-lead { font-size: 1rem; }
-    .post-tags, .post-share-footer, .products-section, .related-posts { padding: 1.25rem 1.5rem; }
+    .post-tags, .post-share-footer, .related-posts { padding: 1.25rem 1.5rem; }
     .related-grid { grid-template-columns: 1fr; }
-    .product-card-mini { flex-direction: column; text-align: center; }
     .post-content :global(table) { display: block; overflow-x: auto; }
   }
 </style>
