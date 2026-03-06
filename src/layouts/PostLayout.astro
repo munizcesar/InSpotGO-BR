@@ -489,6 +489,77 @@ const catColor = categoryColors[frontmatter.category] || 'var(--color-primary)';
   .post-content :global(tr:last-child td) { border-bottom: none; }
   .post-content :global(tr:nth-child(even) td) { background: #f8f9ff; }
 
+  /* ============================================
+     CALLOUT BOXES — tip / aviso / info / perigo
+     Uso no MDX: <div class="callout tip">...</div>
+     ============================================ */
+  .post-content :global(.callout) {
+    border-left: 4px solid;
+    border-radius: 0 10px 10px 0;
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    font-size: 1rem;
+    line-height: 1.7;
+    position: relative;
+  }
+
+  .post-content :global(.callout::before) {
+    display: block;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Tip — verde */
+  .post-content :global(.callout.tip) {
+    background: #f0fdf4;
+    border-color: #22c55e;
+    color: #14532d;
+  }
+  .post-content :global(.callout.tip::before) {
+    content: '✅ Dica';
+    color: #16a34a;
+  }
+
+  /* Aviso — amarelo */
+  .post-content :global(.callout.aviso),
+  .post-content :global(.callout.warning) {
+    background: #fffbeb;
+    border-color: #f59e0b;
+    color: #78350f;
+  }
+  .post-content :global(.callout.aviso::before),
+  .post-content :global(.callout.warning::before) {
+    content: '⚠️ Aviso';
+    color: #d97706;
+  }
+
+  /* Info — azul */
+  .post-content :global(.callout.info) {
+    background: #eff6ff;
+    border-color: #3b82f6;
+    color: #1e3a8a;
+  }
+  .post-content :global(.callout.info::before) {
+    content: 'ℹ️ Informação';
+    color: #2563eb;
+  }
+
+  /* Perigo — vermelho */
+  .post-content :global(.callout.perigo),
+  .post-content :global(.callout.danger) {
+    background: #fff1f2;
+    border-color: #ef4444;
+    color: #7f1d1d;
+  }
+  .post-content :global(.callout.perigo::before),
+  .post-content :global(.callout.danger::before) {
+    content: '🚫 Atenção';
+    color: #dc2626;
+  }
+
   /* Tags */
   .post-tags {
     display: flex;
