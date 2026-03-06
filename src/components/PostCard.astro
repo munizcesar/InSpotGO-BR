@@ -1,0 +1,82 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  cover?: string;
+  date?: string;
+  href: string;
+}
+const { title, description, cover = '/placeholder-post.jpg', date, href } = Astro.props;
+---
+<article class="post-card">
+  <a href={href} class="post-card-image-link">
+    <img src={cover} alt={title} class="post-card-image" loading="lazy" />
+  </a>
+  <div class="post-card-content">
+    <a href={href} class="post-card-title">
+      <h3>{title}</h3>
+    </a>
+    {date && <time class="post-card-date">{date}</time>}
+    <p class="post-card-description">{description}</p>
+    <a href={href} class="post-card-readmore">Ler artigo →</a>
+  </div>
+</article>
+<style>
+.post-card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.post-card-image-link {
+  display: block;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+.post-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.post-card-content {
+  padding: 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.post-card-title {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+.post-card-title h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.post-card-date {
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.post-card-description {
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  flex: 1;
+}
+.post-card-readmore {
+  color: var(--color-action);
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: auto;
+}
+.post-card-readmore:hover {
+  text-decoration: underline;
+}
+</style>
