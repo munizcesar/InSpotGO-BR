@@ -190,11 +190,11 @@ const latestPosts = allPosts
     position: relative;
     overflow: hidden;
   }
-  /* gradient overlay separado para não bloquear a imagem */
+  /* gradient overlay com opacidade reduzida para imagem mais nítida */
   .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(30,17,80,0.82) 0%, rgba(46,17,85,0.78) 100%);
+    background: linear-gradient(135deg, rgba(30,17,80,0.55) 0%, rgba(46,17,85,0.50) 100%);
     pointer-events: none;
     z-index: 0;
   }
