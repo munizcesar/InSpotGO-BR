@@ -7,7 +7,7 @@ date: 2026-03-01
 readTime: "11 min"
 featured: true
 draft: false
-cover: /images/posts/monday-com-review.png
+cover: /images/posts/CRMs.png
 ---
 
 Escolher um CRM é uma das decisões de software mais impactantes que uma pequena empresa pode tomar. A ferramenta certa organiza o pipeline de vendas, melhora o follow-up e revela onde os negócios estão sendo perdidos. A errada vira mais um sistema que ninguém usa.
