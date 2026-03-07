@@ -14,6 +14,8 @@ Escolher um CRM é uma das decisões de software mais impactantes que uma pequen
 
 Este guia compara os 4 CRMs mais usados por pequenas e médias empresas brasileiras em 2026 — com foco no contexto local: suporte em português, faturamento em reais e integrações com ferramentas do mercado BR.
 
+![Comparação de CRMs](/images/posts/CRMs.png)
+
 ## Os 4 CRMs Comparados
 
 | | HubSpot | Pipedrive | RD Station CRM | Ploomes |
