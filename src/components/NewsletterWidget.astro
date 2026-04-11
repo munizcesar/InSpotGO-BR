@@ -1,0 +1,192 @@
+---
+// NewsletterWidget — widget de newsletter com Resend
+// Usado na sidebar do LatestNewsSection
+---
+
+<div class="newsletter-widget">
+  <div class="newsletter-icon">✉️</div>
+  <h4>Fique por Dentro</h4>
+  <p>Receba os melhores reviews direto no seu e-mail</p>
+
+  <form class="newsletter-form" id="newsletter-form-br">
+    <input
+      type="email"
+      placeholder="Seu e-mail"
+      class="newsletter-input"
+      id="newsletter-email-br"
+      required
+      autocomplete="email"
+    />
+    <button type="submit" class="newsletter-button" id="newsletter-btn-br">
+      <span class="btn-text">Assinar</span>
+      <span class="btn-loading" hidden>Enviando…</span>
+    </button>
+  </form>
+
+  <div class="newsletter-success" id="newsletter-success-br" hidden>
+    <span class="success-icon">✅</span>
+    <p>Inscrição confirmada! Obrigado.</p>
+  </div>
+
+  <div class="newsletter-error" id="newsletter-error-br" hidden>
+    <span class="error-icon">⚠️</span>
+    <p id="newsletter-error-msg-br">Erro ao inscrever. Tente novamente.</p>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('newsletter-form-br') as HTMLFormElement | null;
+  const btn = document.getElementById('newsletter-btn-br') as HTMLButtonElement | null;
+  const btnText = btn?.querySelector('.btn-text') as HTMLElement | null;
+  const btnLoading = btn?.querySelector('.btn-loading') as HTMLElement | null;
+  const successEl = document.getElementById('newsletter-success-br') as HTMLElement | null;
+  const errorEl = document.getElementById('newsletter-error-br') as HTMLElement | null;
+  const errorMsg = document.getElementById('newsletter-error-msg-br') as HTMLElement | null;
+  const emailInput = document.getElementById('newsletter-email-br') as HTMLInputElement | null;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = emailInput?.value.trim();
+    if (!email) return;
+
+    // Loading state
+    if (btn) btn.disabled = true;
+    if (btnText) btnText.hidden = true;
+    if (btnLoading) btnLoading.hidden = false;
+    if (errorEl) errorEl.hidden = true;
+
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        if (form) form.hidden = true;
+        if (successEl) successEl.hidden = false;
+      } else {
+        if (errorMsg) errorMsg.textContent = data.error || 'Erro ao inscrever. Tente novamente.';
+        if (errorEl) errorEl.hidden = false;
+        if (btn) btn.disabled = false;
+        if (btnText) btnText.hidden = false;
+        if (btnLoading) btnLoading.hidden = true;
+      }
+    } catch {
+      if (errorMsg) errorMsg.textContent = 'Erro de conexão. Tente novamente.';
+      if (errorEl) errorEl.hidden = false;
+      if (btn) btn.disabled = false;
+      if (btnText) btnText.hidden = false;
+      if (btnLoading) btnLoading.hidden = true;
+    }
+  });
+</script>
+
+<style>
+  .newsletter-widget {
+    background: var(--gradient-hero, linear-gradient(135deg, #5b21b6, #7c3aed));
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    color: white;
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .newsletter-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .newsletter-widget h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 0.4rem 0;
+  }
+
+  .newsletter-widget p {
+    font-size: 0.875rem;
+    margin: 0 0 1.25rem 0;
+    opacity: 0.92;
+    max-width: 100%;
+  }
+
+  .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .newsletter-input {
+    padding: 0.75rem 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    font-size: 0.9rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .newsletter-input::placeholder { color: rgba(255, 255, 255, 0.65); }
+
+  .newsletter-input:focus {
+    outline: none;
+    border-color: white;
+    background: rgba(255, 255, 255, 0.22);
+  }
+
+  .newsletter-button {
+    padding: 0.75rem;
+    background: white;
+    color: #5b21b6;
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+  }
+
+  .newsletter-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(255, 255, 255, 0.35);
+  }
+
+  .newsletter-button:disabled { opacity: 0.7; cursor: not-allowed; }
+
+  .newsletter-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 0;
+  }
+
+  .success-icon { font-size: 2rem; }
+
+  .newsletter-success p {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    opacity: 1;
+  }
+
+  .newsletter-error {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(255,255,255,0.15);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .newsletter-error p {
+    font-size: 0.82rem;
+    margin: 0;
+    opacity: 1;
+    color: #ffe4e4;
+    text-align: left;
+    max-width: 100%;
+  }
+</style>
