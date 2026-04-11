@@ -8,7 +8,7 @@ updated: 2026-04-11
 readTime: "10 min"
 featured: true
 draft: false
-cover: /images/banners/customgpt/customgpt.png
+cover: /images/banners/customgpt/customgpt-large-336x280.png
 coverAlt: "CustomGPT.ai — Crie um chatbot de IA treinado nos seus próprios dados"
 ---
 
