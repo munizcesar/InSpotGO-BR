@@ -27,10 +27,10 @@ coverAlt: "CustomGPT.ai — Crie um chatbot de IA treinado nos seus próprios da
 | **Configuração no-code** | Sim |
 | **Acesso via API** | Sim (planos developer) |
 | **Trial gratuito** | Sim |
-| **Preço inicial** | A partir de US$ 99/mês — [ver preços atuais](https://customgpt.ai/?fpr=inspotgo81&fp_sid=brasil) |
+| **Preço inicial** | A partir de US$ 99/mês — [ver preços atuais](https://customgpt.ai?fpr=inspotgo81&fp_sid=brasil) |
 | **Segurança** | SOC-2 Type II · GDPR |
 
-<a href="https://customgpt.ai/?fpr=inspotgo81&fp_sid=brasil" rel="nofollow sponsored" target="_blank">
+<a href="https://customgpt.ai?fpr=inspotgo81&fp_sid=brasil" rel="nofollow sponsored" target="_blank">
   <img src="/images/banners/customgpt/customgpt-leaderboard-728x90.png" alt="CustomGPT.ai — Crie um chatbot personalizado com seus dados. Comece grátis." width="728" height="90" loading="lazy" />
 </a>
 
@@ -94,13 +94,13 @@ Para times em setores regulados, a documentação completa de segurança está d
 
 ## Preços
 
-O CustomGPT.ai oferece planos escalonados com base no número de projetos de chatbot, fontes de dados e volume mensal de mensagens. A partir de US$ 99/mês — [ver preços atuais](https://customgpt.ai/?fpr=inspotgo81&fp_sid=brasil).
+O CustomGPT.ai oferece planos escalonados com base no número de projetos de chatbot, fontes de dados e volume mensal de mensagens. A partir de US$ 99/mês — [ver preços atuais](https://customgpt.ai?fpr=inspotgo81&fp_sid=brasil).
 
 Um trial gratuito está disponível com limitações adequadas para testes iniciais. Os planos pagos escalam de criadores individuais a implantações enterprise com acesso a API, suporte prioritário e mais de 150 agentes de IA.
 
 > **Atenção:** Os planos são cobrados em dólar (USD). O custo final em reais varia conforme a cotação. Verifique sempre na página do fornecedor antes de contratar.
 
-<a href="https://customgpt.ai/?fpr=inspotgo81&fp_sid=brasil" rel="nofollow sponsored" target="_blank">
+<a href="https://customgpt.ai?fpr=inspotgo81&fp_sid=brasil" rel="nofollow sponsored" target="_blank">
   <img src="/images/banners/customgpt/customgpt-medium-300x250.png" alt="CustomGPT.ai — Chatbots de IA personalizados. Comece grátis." width="300" height="250" loading="lazy" />
 </a>
 
@@ -147,12 +147,12 @@ O CustomGPT.ai resolve um problema específico e real: empresas precisam de assi
 
 Se o seu time gerencia uma base de conhecimento, documentação de produto ou uma caixa de suporte de alto volume — e quer implantar um assistente de IA sem uma equipe de desenvolvimento — o CustomGPT.ai é uma das plataformas mais capazes desta categoria.
 
-<a href="https://customgpt.ai/?fpr=inspotgo81&fp_sid=brasil" rel="nofollow sponsored" target="_blank">
+<a href="https://customgpt.ai?fpr=inspotgo81&fp_sid=brasil" rel="nofollow sponsored" target="_blank">
   <img src="/images/banners/customgpt/customgpt-large-336x280.png" alt="CustomGPT.ai — Chatbots de IA com seus dados. Comece grátis." width="336" height="280" loading="lazy" />
 </a>
 
 <p style="text-align:center; margin-top: 1.5rem;">
-  <a href="https://customgpt.ai/?fpr=inspotgo81&fp_sid=brasil" rel="nofollow sponsored" target="_blank" style="display:inline-block; background:#01696f; color:#fff; font-weight:700; font-size:1.05rem; padding:0.85rem 2rem; border-radius:0.5rem; text-decoration:none; letter-spacing:0.01em;">🚀 Testar o CustomGPT.ai Grátis →</a>
+  <a href="https://customgpt.ai?fpr=inspotgo81&fp_sid=brasil" rel="nofollow sponsored" target="_blank" style="display:inline-block; background:#01696f; color:#fff; font-weight:700; font-size:1.05rem; padding:0.85rem 2rem; border-radius:0.5rem; text-decoration:none; letter-spacing:0.01em;">🚀 Testar o CustomGPT.ai Grátis →</a>
 </p>
 
 ---
@@ -175,7 +175,7 @@ Sim. O CustomGPT.ai possui certificação SOC-2 Type II e é conforme ao GDPR. O
 A plataforma suporta PDFs, documentos Word, arquivos de texto, URLs de sites, sitemaps, Google Drive, SharePoint, HubSpot, Zendesk e mais. Várias fontes podem ser ingeridas simultaneamente via API ou pela interface no-code.
 
 ### Quantas páginas ou documentos posso enviar?
-O número de páginas e fontes de dados varia por plano. Planos de entrada suportam milhares de páginas de conteúdo, enquanto planos superiores permitem significativamente mais. Verifique os [detalhes dos planos atuais](https://customgpt.ai/?fpr=inspotgo81&fp_sid=brasil) antes de contratar.
+O número de páginas e fontes de dados varia por plano. Planos de entrada suportam milhares de páginas de conteúdo, enquanto planos superiores permitem significativamente mais. Verifique os [detalhes dos planos atuais](https://customgpt.ai?fpr=inspotgo81&fp_sid=brasil) antes de contratar.
 
 ### O CustomGPT.ai integra com Slack ou Microsoft Teams?
 O CustomGPT.ai oferece integrações via REST API, que podem ser conectadas ao Slack e ao Microsoft Teams por meio de ferramentas de middleware como Zapier ou configurações de webhook personalizadas. Integrações nativas dependem do plano contratado.
