@@ -8,7 +8,7 @@ updated: 2026-04-11
 readTime: "10 min"
 featured: true
 draft: false
-cover: /images/posts/customgpt.png
+cover: /images/banners/customgpt/customgpt.webp
 coverAlt: "CustomGPT.ai — Crie um chatbot de IA treinado nos seus próprios dados"
 ---
 
@@ -31,7 +31,7 @@ coverAlt: "CustomGPT.ai — Crie um chatbot de IA treinado nos seus próprios da
 | **Segurança** | SOC-2 Type II · GDPR |
 
 <a href="https://customgpt.ai?fpr=inspotgo81&fp_sid=brasil" rel="nofollow sponsored" target="_blank">
-  <img src="/images/posts/customgpt.png" alt="CustomGPT.ai — Crie um chatbot personalizado com seus dados. Comece grátis." loading="lazy" />
+  <img src="/images/banners/customgpt/customgpt.webp" alt="CustomGPT.ai — Crie um chatbot personalizado com seus dados. Comece grátis." loading="lazy" />
 </a>
 
 ---
