@@ -15,7 +15,6 @@ const latestPosts = allPosts
 <BaseLayout>
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-overlay"></div>
     <div class="container">
       <div class="hero-content">
         <h1 class="hero-title">
@@ -178,30 +177,7 @@ const latestPosts = allPosts
 </BaseLayout>
 
 <style>
-  /* Hero */
-  .hero {
-    background-color: #1e1150;
-    background-image: url('/images/banners/hero/hero-home.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    color: #fff;
-    padding: 5rem 0 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-  /* gradient overlay com opacidade reduzida para imagem mais nítida */
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(30,17,80,0.55) 0%, rgba(46,17,85,0.50) 100%);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .hero .container {
-    position: relative;
-    z-index: 1;
-  }
+  .hero { background: linear-gradient(135deg, rgba(30,17,80,0.82), rgba(46,17,85,0.78)), url('/images/banners/hero/hero-home.png') center/cover no-repeat; color: #fff; padding: 5rem 0 4rem; }
   .hero-content { max-width: 700px; }
   .hero-badge { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); border-radius: 100px; padding: 0.3rem 1rem; font-size: 0.8rem; font-weight: 600; margin-bottom: 1.5rem; }
   .hero-title { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
@@ -224,8 +200,14 @@ const latestPosts = allPosts
   .latest-header { text-align: center; margin-bottom: 2.5rem; }
   .latest-section-title { font-size: 2rem; }
   .latest-desc { color: var(--color-text-light); font-size: 0.95rem; margin-top: 0.5rem; }
+
+  /* Layout principal 2 colunas */
   .latest-layout { display: grid; grid-template-columns: 1fr 340px; gap: 2.5rem; align-items: start; }
+
+  /* Coluna esquerda */
   .latest-left { display: flex; flex-direction: column; gap: 2rem; }
+
+  /* Post grande (topo esquerda) */
   .latest-main-card { background: #fff; border: 1px solid var(--color-border); border-radius: 14px; overflow: hidden; transition: box-shadow 0.3s, transform 0.3s; }
   .latest-main-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,0.12); transform: translateY(-3px); }
   .latest-main-img { width: 100%; height: 380px; object-fit: cover; display: block; }
@@ -238,13 +220,21 @@ const latestPosts = allPosts
   .latest-main-title a:hover { color: var(--color-primary); }
   .latest-main-desc { color: var(--color-text-light); font-size: 0.95rem; line-height: 1.65; margin: 0.75rem 0 0; }
   .latest-main-meta { display: flex; gap: 1rem; font-size: 0.82rem; color: var(--color-text-lighter); margin-top: 1rem; }
+
+  /* Sub-grid 2 colunas */
   .latest-sub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+  /* Botão ver todos */
   .view-all-wrapper { display: flex; justify-content: center; }
   .view-all-btn { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--gradient-action, linear-gradient(135deg,#f97316,#ec4899)); color: #fff; font-weight: 600; font-size: 0.9rem; padding: 0.75rem 2rem; border-radius: 100px; text-decoration: none; transition: opacity 0.2s, transform 0.2s; }
   .view-all-btn:hover { opacity: 0.88; transform: translateY(-2px); }
+
+  /* Sidebar direita */
   .latest-sidebar { display: flex; flex-direction: column; gap: 1.5rem; position: sticky; top: 80px; }
   .sidebar-block { background: #fff; border: 1px solid var(--color-border); border-radius: 14px; padding: 1.5rem; }
   .sidebar-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 1.25rem; border-bottom: 2px solid var(--color-border); padding-bottom: 0.75rem; }
+
+  /* Em Alta */
   .trending-list { display: flex; flex-direction: column; gap: 0.875rem; }
   .trending-item { display: flex; gap: 0.875rem; padding: 0.75rem; border-radius: 10px; text-decoration: none; color: inherit; transition: background 0.2s; }
   .trending-item:hover { background: #f9fafb; }
@@ -255,6 +245,8 @@ const latestPosts = allPosts
   .trending-date { font-size: 0.72rem; color: var(--color-text-lighter); }
   .sidebar-all-btn { display: block; text-align: center; background: var(--gradient-action, linear-gradient(135deg,#f97316,#ec4899)); color: #fff; font-weight: 600; font-size: 0.85rem; padding: 0.65rem 1rem; border-radius: 8px; text-decoration: none; transition: opacity 0.2s; margin-top: 1.25rem; }
   .sidebar-all-btn:hover { opacity: 0.88; }
+
+  /* Newsletter */
   .newsletter-block { background: linear-gradient(135deg, #312e81, #4c1d95); border: none; color: #fff; }
   .newsletter-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; color: #fff; border-bottom: none; padding-bottom: 0; }
   .newsletter-desc { font-size: 0.82rem; color: rgba(255,255,255,0.75); margin-bottom: 1.25rem; line-height: 1.5; }
@@ -262,11 +254,13 @@ const latestPosts = allPosts
   .newsletter-input { padding: 0.65rem 1rem; border-radius: 8px; border: none; font-size: 0.875rem; outline: none; background: rgba(255,255,255,0.95); }
   .newsletter-btn { padding: 0.65rem 1rem; border-radius: 8px; border: none; background: #fff; color: #312e81; font-weight: 700; font-size: 0.875rem; cursor: pointer; transition: background 0.2s; }
   .newsletter-btn:hover { background: #f3f4f6; }
+
+  /* Post cards sub-grid */
   .post-card-wrapper { position: relative; }
   .post-card { background: #fff; border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: box-shadow 0.2s, transform 0.2s; display: flex; flex-direction: column; height: 100%; }
   .post-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.1); transform: translateY(-2px); }
-  .post-card-img { width: 100%; height: 180px; object-fit: cover; }
-  .post-card-img-placeholder { width: 100%; height: 180px; background: linear-gradient(135deg, #e0e7ff, #f3f4f6); }
+  .post-card-img { width: 100%; height: 280px; object-fit: cover; aspect-ratio: 1.9/1; }
+  .post-card-img-placeholder { width: 100%; height: 280px; background: linear-gradient(135deg, #e0e7ff, #f3f4f6); aspect-ratio: 1.9/1; }
   .post-card-body { padding: 1.1rem; flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
   .post-card-cat { position: absolute; top: 0.75rem; left: 0.75rem; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #fff; background: var(--color-primary); padding: 0.2rem 0.65rem; border-radius: 100px; text-decoration: none; z-index: 10; transition: background 0.2s; }
   .post-card-cat:hover { background: var(--color-primary-dark); }
@@ -287,5 +281,7 @@ const latestPosts = allPosts
     .latest-main-img { height: 240px; }
     .latest-main-img-placeholder { height: 240px; }
     .latest-sub-grid { grid-template-columns: 1fr; }
+    .post-card-img { height: 220px; }
+    .post-card-img-placeholder { height: 220px; }
   }
 </style>
