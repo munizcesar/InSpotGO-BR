@@ -31,7 +31,7 @@ coverAlt: "CustomGPT.ai — Crie um chatbot de IA treinado nos seus próprios da
 | **Segurança** | SOC-2 Type II · GDPR |
 
 <a href="https://customgpt.ai?fpr=inspotgo81&fp_sid=brasil" rel="nofollow sponsored" target="_blank">
-  <img src="/images/banners/customgpt/customgpt-leaderboard-728x90.png" alt="CustomGPT.ai — Crie um chatbot personalizado com seus dados. Comece grátis." width="728" height="90" loading="lazy" />
+  <img src="/images/banners/customgpt/customgpt.png" alt="CustomGPT.ai — Crie um chatbot personalizado com seus dados. Comece grátis." loading="lazy" />
 </a>
 
 ---
