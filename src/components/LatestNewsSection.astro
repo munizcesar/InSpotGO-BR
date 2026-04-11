@@ -1,6 +1,7 @@
 ---
 import { Clock, ArrowRight } from 'lucide-astro';
 import WhatsHot from './WhatsHot.astro';
+import NewsletterWidget from './NewsletterWidget.astro';
 import { SITE_CONFIG } from '../config';
 import { getCollection } from 'astro:content';
 
@@ -149,24 +150,7 @@ const categoryColors: Record<string, string> = {
 
       <aside class="news-sidebar">
         <WhatsHot />
-
-        {SITE_CONFIG.features?.newsletter && (
-        <div class="newsletter-widget">
-          <h4>Fique Atualizado</h4>
-          <p>Receba nossas análises mais recentes no seu e-mail</p>
-          <form class="newsletter-form">
-            <input
-              type="email"
-              placeholder="Seu e-mail"
-              class="newsletter-input"
-              required
-            />
-            <button type="submit" class="newsletter-button">
-              Assinar
-            </button>
-          </form>
-        </div>
-        )}
+        {SITE_CONFIG.features?.newsletter && <NewsletterWidget />}
       </aside>
     </div>
   </div>
@@ -227,7 +211,6 @@ const categoryColors: Record<string, string> = {
 
   .featured-link { text-decoration: none; display: block; }
 
-  /* aspect-ratio 1200/630 — sem corte para covers OG */
   .featured-image-wrapper {
     position: relative;
     width: 100%;
@@ -309,7 +292,6 @@ const categoryColors: Record<string, string> = {
   .article-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
   .article-link { text-decoration: none; display: block; }
 
-  /* aspect-ratio 1200/630 — grid cards */
   .article-image-wrapper {
     position: relative;
     width: 100%;
@@ -399,45 +381,6 @@ const categoryColors: Record<string, string> = {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(249, 115, 22, 0.4);
   }
-
-  .newsletter-widget {
-    background: var(--gradient-hero);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem;
-    color: white;
-    margin-top: 2rem;
-  }
-
-  .newsletter-widget h4 { font-size: 1.25rem; margin: 0 0 0.5rem 0; }
-  .newsletter-widget p { font-size: 0.9rem; margin: 0 0 1.25rem 0; opacity: 0.95; }
-
-  .newsletter-form { display: flex; flex-direction: column; gap: 0.75rem; }
-
-  .newsletter-input {
-    padding: 0.75rem;
-    border: 2px solid rgba(255,255,255,0.3);
-    border-radius: var(--radius-md);
-    background: rgba(255,255,255,0.15);
-    color: white;
-    font-size: 0.9rem;
-  }
-
-  .newsletter-input::placeholder { color: rgba(255,255,255,0.7); }
-  .newsletter-input:focus { outline: none; border-color: white; background: rgba(255,255,255,0.2); }
-
-  .newsletter-button {
-    padding: 0.75rem;
-    background: white;
-    color: var(--color-primary);
-    border: none;
-    border-radius: var(--radius-md);
-    font-weight: 600;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all var(--transition-base);
-  }
-
-  .newsletter-button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255,255,255,0.3); }
 
   @media (max-width: 1024px) {
     .news-layout { grid-template-columns: 1fr; }
