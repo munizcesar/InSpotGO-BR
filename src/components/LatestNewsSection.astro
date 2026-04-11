@@ -227,9 +227,11 @@ const categoryColors: Record<string, string> = {
 
   .featured-link { text-decoration: none; display: block; }
 
+  /* aspect-ratio 1200/630 — sem corte para covers OG */
   .featured-image-wrapper {
     position: relative;
-    padding-top: 56.25%;
+    width: 100%;
+    aspect-ratio: 1200 / 630;
     overflow: hidden;
   }
 
@@ -238,6 +240,7 @@ const categoryColors: Record<string, string> = {
     top: 0; left: 0;
     width: 100%; height: 100%;
     object-fit: cover;
+    object-position: center center;
     transition: transform 0.5s ease;
   }
 
@@ -306,9 +309,11 @@ const categoryColors: Record<string, string> = {
   .article-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
   .article-link { text-decoration: none; display: block; }
 
+  /* aspect-ratio 1200/630 — grid cards */
   .article-image-wrapper {
     position: relative;
-    padding-top: 60%;
+    width: 100%;
+    aspect-ratio: 1200 / 630;
     overflow: hidden;
   }
 
@@ -317,6 +322,7 @@ const categoryColors: Record<string, string> = {
     top: 0; left: 0;
     width: 100%; height: 100%;
     object-fit: cover;
+    object-position: center center;
     transition: transform 0.3s ease;
   }
 
