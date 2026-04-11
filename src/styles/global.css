@@ -26,8 +26,46 @@
   --gradient-logo-go: linear-gradient(90deg, #f97316, #ec4899);
   --gradient-action: linear-gradient(135deg, #f97316, #ec4899);
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: var(--font-sans); line-height: 1.6; color: var(--color-text); background: var(--color-bg); }
-.container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--spacing); }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Impede overflow horizontal em toda a página (evita corte lateral no mobile) */
+html { overflow-x: hidden; }
+body {
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+  overflow-x: hidden;
+  min-width: 0;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing);
+  /* Garante que o container nunca ultrapasse a largura da viewport */
+  width: 100%;
+  min-width: 0;
+}
+
 a { color: var(--color-primary); }
-img { max-width: 100%; height: auto; }
+
+/* Imagens sempre responsivas — nunca vazam fora do contêiner */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Tabelas com scroll horizontal em vez de overflow */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 600px) {
+  table { display: table; }
+}
