@@ -42,7 +42,7 @@ O CustomGPT.ai é uma plataforma SaaS que permite a empresas criar chatbots de I
 
 A plataforma utiliza infraestrutura de grandes modelos de linguagem, mas seu diferencial central é a **geração aumentada por recuperação (RAG)**: a IA busca respostas diretamente no seu conteúdo indexado, em vez de gerar respostas a partir de um conjunto de treinamento amplo. Isso elimina o problema de alucinações tão comum em ferramentas de IA genéricas no contexto empresarial.
 
-O CustomGPT.ai ganhou credibilidade notável por meio de um [estudo de caso do MIT](https://customgpt.ai/customer/chatmtc-mit-entrepreneurship/?fpr=inspotgo81&fp_sid=brasil), que documentou o uso da plataforma para suporte educacional com IA — um sinal significativo de confiabilidade em nível enterprise.
+O CustomGPT.ai ganhou credibilidade notável por meio de um [estudo de caso do MIT](https://customgpt.ai/customer/chatmtc-mit-entrepreneurship/?fpr=inspotgo81), que documentou o uso da plataforma para suporte educacional com IA — um sinal significativo de confiabilidade em nível enterprise.
 
 ---
 
