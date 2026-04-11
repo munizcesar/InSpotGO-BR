@@ -101,7 +101,7 @@ Um trial gratuito está disponível com limitações adequadas para testes inici
 > **Atenção:** Os planos são cobrados em dólar (USD). O custo final em reais varia conforme a cotação. Verifique sempre na página do fornecedor antes de contratar.
 
 <a href="https://customgpt.ai?fpr=inspotgo81&fp_sid=brasil" rel="nofollow sponsored" target="_blank">
-  <img src="/images/banners/customgpt/customgpt-medium-300x250.png" alt="CustomGPT.ai — Chatbots de IA personalizados. Comece grátis." width="300" height="250" loading="lazy" />
+  <img src="/images/banners/customgpt/customgpt-leaderboard-728x90.png" alt="CustomGPT.ai — Chatbots de IA personalizados. Comece grátis." style="max-width:100%; height:auto;" loading="lazy" />
 </a>
 
 ---
@@ -148,7 +148,7 @@ O CustomGPT.ai resolve um problema específico e real: empresas precisam de assi
 Se o seu time gerencia uma base de conhecimento, documentação de produto ou uma caixa de suporte de alto volume — e quer implantar um assistente de IA sem uma equipe de desenvolvimento — o CustomGPT.ai é uma das plataformas mais capazes desta categoria.
 
 <a href="https://customgpt.ai?fpr=inspotgo81&fp_sid=brasil" rel="nofollow sponsored" target="_blank">
-  <img src="/images/banners/customgpt/customgpt-large-336x280.png" alt="CustomGPT.ai — Chatbots de IA com seus dados. Comece grátis." width="336" height="280" loading="lazy" />
+  <img src="/images/banners/customgpt/customgpt-leaderboard-728x90.png" alt="CustomGPT.ai — Chatbots de IA com seus dados. Comece grátis." style="max-width:100%; height:auto;" loading="lazy" />
 </a>
 
 <p style="text-align:center; margin-top: 1.5rem;">
